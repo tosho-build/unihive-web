@@ -327,6 +327,40 @@ section {
   line-height: 1.7;
 }
 
+/* ── QUAL TAGS ── */
+.qual-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 16px 0 20px;
+}
+
+.qual-tag {
+  padding: 4px 12px;
+  border-radius: 100px;
+  background: rgba(27,67,50,0.08);
+  border: 1px solid rgba(27,67,50,0.2);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--green);
+}
+
+/* ── SCHOOL LINK ── */
+.school-link {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--success);
+  text-decoration: none;
+  margin-top: 4px;
+  transition: color 0.2s;
+}
+
+.school-link:hover {
+  color: var(--green);
+  text-decoration: underline;
+}
+
 /* ── HOW IT WORKS ── */
 .how {
   background: var(--white);

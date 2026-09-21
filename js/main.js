@@ -92,26 +92,26 @@ const carouselData = [
   {
     label: 'Direct Entry',
     title: 'UniHive — DE Admission Update',
-    region: 'Northern Nigeria focus',
+    region: 'Nationwide · Diploma & A-Level holders',
     updates: [
-      { name: 'ABU Zaria · Portal open', info: 'Computer Science · Lower Credit min · Fee: ₦2,000 · Deadline: Oct 30' },
-      { name: 'ATBU Bauchi · Portal open', info: 'Computer Engineering, IT · JAMB min: 180 · Fee: ₦2,000' },
-      { name: 'BUK Kano · Portal open', info: 'Cybersecurity, CS · Upper Credit · JAMB min: 200' },
+      { name: 'ABU Zaria · Portal open', info: 'OND/HND Computer Science · Lower Credit min · Fee: ₦2,000 · Deadline: Oct 30', link: 'https://www.abu.edu.ng/admissions' },
+      { name: 'ATBU Bauchi · Portal open', info: 'HND/NCE Computer Engineering, IT · JAMB min: 180 · Fee: ₦2,000', link: 'https://www.atbu.edu.ng/admissions' },
+      { name: 'BUK Kano · Portal open', info: 'OND/HND Cybersecurity, CS · Upper Credit · JAMB min: 200', link: 'https://www.buk.edu.ng/admissions' },
     ],
     actions: [
       'Visit ABU portal — deadline is Oct 30, apply now',
       'Confirm JAMB DE profile is active at jamb.gov.ng',
-      'Request HND transcript from your polytechnic',
+      'Request your transcript from your institution',
     ]
   },
   {
     label: 'UTME / Post-UTME',
     title: 'UniHive — Post-UTME Update',
-    region: 'All regions · UTME focus',
+    region: 'Nationwide · All universities',
     updates: [
-      { name: 'UNILORIN · Post-UTME open', info: 'Cut-off: 200 · Screening ongoing · Fee: ₦2,500' },
-      { name: 'Nasarawa State Uni · Forms out', info: 'Registration open · Deadline: Nov 15' },
-      { name: 'Gombe State Uni · Supplementary', info: 'Second batch admission still open' },
+      { name: 'UNILORIN · Post-UTME open', info: 'Cut-off: 200 · Screening ongoing · Fee: ₦2,500', link: 'https://www.unilorin.edu.ng/admissions' },
+      { name: 'Nasarawa State Uni · Forms out', info: 'Registration open · All courses · Deadline: Nov 15', link: 'https://www.nsuk.edu.ng/admissions' },
+      { name: 'OAU Ile-Ife · Supplementary', info: 'Second batch admission still open · Selected courses', link: 'https://www.oauife.edu.ng/admissions' },
     ],
     actions: [
       'Check UNILORIN portal for your screening date',
@@ -122,11 +122,11 @@ const carouselData = [
   {
     label: 'Postgraduate',
     title: 'UniHive — PG Admission Update',
-    region: 'Federal universities · PG focus',
+    region: 'Nationwide · All universities · PG focus',
     updates: [
-      { name: 'ABU Zaria · MSc CS open', info: 'Min: Second Class Lower · Application fee: ₦10,000' },
-      { name: 'UI Ibadan · MBA intake', info: '2026/2027 session · Closing soon' },
-      { name: 'UNN · PhD Engineering', info: 'Research positions available · Supervisor matching open' },
+      { name: 'ABU Zaria · MSc CS open', info: 'Min: Second Class Lower · Application fee: ₦10,000', link: 'https://www.abu.edu.ng/pg-admissions' },
+      { name: 'UI Ibadan · MBA intake', info: '2026/2027 session · Full & part-time · Closing soon', link: 'https://www.ui.edu.ng/pg-admissions' },
+      { name: 'UNN · PhD Engineering', info: 'Research positions available · Supervisor matching open', link: 'https://www.unn.edu.ng/pg-admissions' },
     ],
     actions: [
       'Submit ABU PG form before deadline closes',
@@ -137,11 +137,11 @@ const carouselData = [
   {
     label: 'Professional',
     title: 'UniHive — Professional Cert Update',
-    region: 'Nationwide · All programmes',
+    region: 'Nationwide · All professional bodies',
     updates: [
-      { name: 'ICAN · November Diet open', info: 'Skills level registration · Exam: November 2026' },
-      { name: 'NIM Certificate · New intake', info: 'Management certification · 6 months · Nationwide' },
-      { name: 'CIPM · Registration open', info: 'Professional HR certification · Online available' },
+      { name: 'ICAN · November Diet open', info: 'Skills level registration · Exam: November 2026', link: 'https://www.ican.org.ng' },
+      { name: 'NIM Certificate · New intake', info: 'Management certification · 6 months · Nationwide', link: 'https://www.nim.org.ng' },
+      { name: 'CIPM · Registration open', info: 'Professional HR certification · Online available', link: 'https://www.cipm.org.ng' },
     ],
     actions: [
       'Register for ICAN November diet before window closes',
@@ -169,16 +169,17 @@ function buildCarousel() {
         </div>
         <div class="email-body">
           <div class="email-section">
-            <div class="email-section-title">University updates</div>
+            <div class="email-section-title">Updates</div>
             ${slide.updates.map(u => `
               <div class="email-school">
                 <div class="email-school-name">${u.name}</div>
                 <div class="email-school-info">${u.info}</div>
+                <a href="${u.link}" target="_blank" class="school-link">Visit portal →</a>
               </div>
             `).join('')}
           </div>
           <div class="email-section">
-            <div class="email-section-title">Action items for today</div>
+            <div class="email-section-title">Action items</div>
             ${slide.actions.map(a => `<div class="email-action">${a}</div>`).join('')}
           </div>
         </div>
