@@ -1,566 +1,956 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>UniHive — Every Admission. Every Deadline. One Hive.</title>
-  <meta name="description" content="Nigeria's admission tracker. Never miss a university portal opening, DE form, Post-UTME or PG deadline again. Get smart personalized alerts free.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css">
-</head>
-<body>
-
-<!-- ── NAVBAR ── -->
-<nav>
-  <a href="#" class="nav-logo">
-    <svg class="logo-icon" viewBox="0 0 38 38" fill="none">
-      <rect width="38" height="38" rx="9" fill="#1B4332"/>
-      <polygon points="19,8 27,12.5 27,21.5 19,26 11,21.5 11,12.5" fill="#F59E0B"/>
-      <polygon points="19,11 25,14.5 25,21 19,24.5 13,21 13,14.5" fill="#F59E0B" opacity="0.35"/>
-      <rect x="10" y="5" width="18" height="4" rx="1.5" fill="white"/>
-      <rect x="15" y="2" width="8" height="5" rx="1.5" fill="#F59E0B"/>
-      <line x1="28" y1="7" x2="30" y2="11" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
-      <circle cx="30" cy="13" r="2.5" fill="white"/>
-      <path d="M9 15 Q5 19 9 23" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
-      <path d="M7 12 Q1 19 7 26" fill="none" stroke="white" stroke-width="1" stroke-linecap="round" opacity="0.4"/>
-      <circle cx="19" cy="17" r="3" fill="#1B4332"/>
-    </svg>
-    <span class="logo-text"><span>Uni</span><span>Hive</span></span>
-  </a>
-
-  <ul class="nav-links" id="navLinks">
-    <li><a href="#how-it-works">How it works</a></li>
-    <li><a href="#features">Features</a></li>
-    <li><a href="#programmes">Programmes</a></li>
-    <li><a href="#faq">FAQ</a></li>
-    <li><a href="#signup" class="btn btn-primary">Join the Hive</a></li>
-  </ul>
-
-  <button class="hamburger" id="hamburger" aria-label="Open menu">
-    <span></span><span></span><span></span>
-  </button>
-</nav>
-
-<!-- ── HERO ── -->
-<section class="hero" id="signup">
-  <div class="hero-badge">
-    <span></span> 2026/2027 admission season is active now
-  </div>
-  <h1>Never miss a university<br>portal opening again</h1>
-  <p>UniHive tracks every admission form, deadline, and portal opening across Nigerian universities — and sends you smart personalized alerts, free. For UTME, Direct Entry, Postgraduate and Professional programmes.</p>
-  <form class="hero-form" onsubmit="handleSignup(event)">
-    <input type="email" placeholder="Enter your email address" required>
-    <button type="submit" class="btn btn-amber btn-lg">Join the Hive</button>
-  </form>
-  <div class="hero-stats">
-    <div class="hero-stat">
-      <strong>50+</strong>
-      <span>Universities tracked</span>
-    </div>
-    <div class="hero-stat">
-      <strong>Smart</strong>
-      <span>Event-driven alerts</span>
-    </div>
-    <div class="hero-stat">
-      <strong>Free</strong>
-      <span>Always, forever</span>
-    </div>
-    <div class="hero-stat">
-      <strong>4</strong>
-      <span>Programmes covered</span>
-    </div>
-  </div>
-</section>
-
-<!-- ── HOW IT WORKS ── -->
-<section class="how" id="how-it-works">
-  <div class="how-inner">
-    <div class="how-header">
-      <p class="section-label">How it works</p>
-      <h2 class="section-title">From signup to your first alert in 60 seconds</h2>
-      <p class="section-sub">No manual checking. No WhatsApp groups. No missed forms. Tell us what you need — we monitor, you act.</p>
-    </div>
-    <div class="steps">
-      <div class="step">
-        <div class="step-num">1</div>
-        <h3>Tell us about yourself</h3>
-        <p>Answer 5 quick questions — your qualification, target programme (UTME, Direct Entry, PG or Professional), preferred region, and course interests. Takes under a minute.</p>
-      </div>
-      <div class="step">
-        <div class="step-num">2</div>
-        <h3>We monitor every day</h3>
-        <p>Our agent scans 50+ university portals and official news sources every morning, filtering only what matches your profile — your programme, your region, your courses.</p>
-      </div>
-      <div class="step">
-        <div class="step-num">3</div>
-        <h3>You get alerted when it matters</h3>
-        <p>Weekly digest every Monday. Instant alert the moment a portal opens or a deadline is 7 days away. No noise — only updates that need your attention right now.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── FEATURES ── -->
-<section class="features" id="features">
-  <div class="features-inner">
-    <p class="section-label">Features</p>
-    <h2 class="section-title">Everything you need to stay ahead of admissions</h2>
-    <div class="features-grid">
-      <div class="feature-card">
-        <div class="feature-icon">
-          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-        </div>
-        <h3>Portal monitoring</h3>
-        <p>We check university admission portals daily and flag the moment a Direct Entry, Post-UTME, PG or professional form goes live — for every programme type.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">
-          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8 19.79 19.79 0 01.22 1.18 2 2 0 012.18 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.09a16 16 0 006 6l.56-.56a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
-        </div>
-        <h3>Smart alerts</h3>
-        <p>No daily spam. You get a weekly digest every Monday, an instant alert when a portal opens, and an urgent reminder 7 days before any deadline closes.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">
-          <svg viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><circle cx="12" cy="11" r="3"/></svg>
-        </div>
-        <h3>Region filtering</h3>
-        <p>Set your preferred region and get results focused on where you want to study. Standout opportunities from other regions are flagged separately with clear reasons.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">
-          <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-        </div>
-        <h3>Weekly digest</h3>
-        <p>Every Monday morning — a clean, formatted summary of all updates relevant to your profile. School-by-school breakdown with requirements, fees, and direct portal links.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">
-          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
-        </div>
-        <h3>All programmes covered</h3>
-        <p>UTME and Post-UTME, Direct Entry for diploma and A-level holders, Postgraduate (MSc, MBA, PhD), and Professional certifications — all in one platform.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">
-          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-        </div>
-        <h3>Opportunity alerts</h3>
-        <p>When an exceptional opportunity opens outside your preferred region, we flag it clearly with facts and reasons — you decide whether it's worth considering.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── PROGRAMMES ── -->
-<section class="programmes" id="programmes">
-  <div class="programmes-inner">
-    <p class="section-label">Programmes</p>
-    <h2 class="section-title">Built for every type of Nigerian student</h2>
-    <p class="section-sub">Tell UniHive what you're pursuing and we track only what matters to you.</p>
-
-    <div class="prog-tabs">
-      <button class="prog-tab active" onclick="switchTab('de')">Direct Entry</button>
-      <button class="prog-tab" onclick="switchTab('utme')">UTME / Post-UTME</button>
-      <button class="prog-tab" onclick="switchTab('pg')">Postgraduate</button>
-      <button class="prog-tab" onclick="switchTab('prof')">Professional</button>
-    </div>
-
-    <!-- DE -->
-    <div class="prog-content active" id="tab-de">
-      <div class="prog-info">
-        <h3>Direct Entry — Diploma & A-Level to B.Sc</h3>
-        <p>For candidates holding a diploma or A-level qualification looking to enter university at 200 level — skipping 100 level entirely. UniHive monitors DE portals across all federal, state and private universities.</p>
-        <div class="qual-tags">
-          <span class="qual-tag">OND</span>
-          <span class="qual-tag">HND</span>
-          <span class="qual-tag">NCE</span>
-          <span class="qual-tag">IJMB</span>
-          <span class="qual-tag">JUPEB</span>
-          <span class="qual-tag">A-Levels</span>
-          <span class="qual-tag">First Degree</span>
-        </div>
-        <ul class="prog-list">
-          <li>Portal openings for 200-level DE admission</li>
-          <li>Grade requirements per school and qualification</li>
-          <li>Cognate subject matching for your field</li>
-          <li>JAMB DE registration deadlines</li>
-          <li>Application fees and direct portal links</li>
-        </ul>
-      </div>
-      <div class="prog-visual">
-        <div class="badge badge-open"><span class="badge-dot"></span> Live updates · <span class="dynamic-date-short"></span></div>
-        <div class="school-entry">
-          <div class="school-name">ABU Zaria</div>
-          <div class="school-detail">Computer Science, Engineering · OND/HND Lower Credit min</div>
-          <a href="https://www.abu.edu.ng/admissions" target="_blank" class="school-link">Portal open · Deadline: Oct 30 →</a>
-        </div>
-        <div class="school-entry">
-          <div class="school-name">ATBU Bauchi</div>
-          <div class="school-detail">Computer Engineering, IT, Software Engineering</div>
-          <a href="https://www.atbu.edu.ng/admissions" target="_blank" class="school-link">Portal open · Fee: ₦2,000 →</a>
-        </div>
-        <div class="school-entry">
-          <div class="school-name">BUK Kano</div>
-          <div class="school-detail">Computer Science, Cybersecurity · Upper Credit preferred</div>
-          <a href="https://www.buk.edu.ng/admissions" target="_blank" class="school-link">Portal open · JAMB min: 200 →</a>
-        </div>
-        <div class="school-entry">
-          <div class="school-name">NOUN</div>
-          <div class="school-detail">CS, IT, Cybersecurity · All qualifications · No JAMB</div>
-          <a href="https://nouonline.net" target="_blank" class="school-link">Always open · Rolling admissions →</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- UTME -->
-    <div class="prog-content" id="tab-utme">
-      <div class="prog-info">
-        <h3>UTME / Post-UTME</h3>
-        <p>For WAEC/NECO candidates who have written JAMB and are waiting for Post-UTME forms, screening dates and cut-off marks across their preferred universities nationwide.</p>
-        <ul class="prog-list">
-          <li>Post-UTME form release alerts</li>
-          <li>Cut-off mark updates per school</li>
-          <li>Screening date and venue notifications</li>
-          <li>Subject combination requirements</li>
-          <li>Supplementary and second batch announcements</li>
-        </ul>
-      </div>
-      <div class="prog-visual">
-        <div class="badge badge-open"><span class="badge-dot"></span> Tracking active · <span class="dynamic-date-short"></span></div>
-        <div class="school-entry">
-          <div class="school-name">University of Ilorin</div>
-          <div class="school-detail">Post-UTME screening ongoing · Cut-off: 200</div>
-          <a href="https://www.unilorin.edu.ng/admissions" target="_blank" class="school-link">Forms available now →</a>
-        </div>
-        <div class="school-entry">
-          <div class="school-name">Nasarawa State University</div>
-          <div class="school-detail">Post-UTME registration open · All courses</div>
-          <a href="https://www.nsuk.edu.ng/admissions" target="_blank" class="school-link">Deadline: Nov 15 →</a>
-        </div>
-        <div class="school-entry">
-          <div class="school-name">University of Lagos</div>
-          <div class="school-detail">Post-UTME portal open · All faculties</div>
-          <a href="https://www.unilag.edu.ng/admissions" target="_blank" class="school-link">Cut-off: 210 · Closes Nov 20 →</a>
-        </div>
-        <div class="school-entry">
-          <div class="school-name">OAU Ile-Ife</div>
-          <div class="school-detail">Supplementary admission ongoing · Selected courses</div>
-          <a href="https://www.oauife.edu.ng/admissions" target="_blank" class="school-link">Still accepting applications →</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- PG -->
-    <div class="prog-content" id="tab-pg">
-      <div class="prog-info">
-        <h3>Postgraduate Programmes</h3>
-        <p>For B.Sc holders looking to pursue MSc, MBA, or PhD programmes across federal, state and private universities. UniHive tracks PG admission forms, entry requirements and thesis deadlines nationwide.</p>
-        <ul class="prog-list">
-          <li>MSc / MBA / PhD form openings</li>
-          <li>Entry requirements per programme</li>
-          <li>Research supervisor availability</li>
-          <li>Scholarship and funding alerts</li>
-          <li>Application and resumption deadlines</li>
-        </ul>
-      </div>
-      <div class="prog-visual">
-        <div class="badge badge-open"><span class="badge-dot"></span> Monitoring active · <span class="dynamic-date-short"></span></div>
-        <div class="school-entry">
-          <div class="school-name">ABU Zaria — MSc Computer Science</div>
-          <div class="school-detail">Min: Second Class Lower · All universities welcome</div>
-          <a href="https://www.abu.edu.ng/pg-admissions" target="_blank" class="school-link">Applications open · Fee: ₦10,000 →</a>
-        </div>
-        <div class="school-entry">
-          <div class="school-name">UI Ibadan — MBA Programme</div>
-          <div class="school-detail">2026/2027 session · Full and part-time options</div>
-          <a href="https://www.ui.edu.ng/pg-admissions" target="_blank" class="school-link">Closing soon →</a>
-        </div>
-        <div class="school-entry">
-          <div class="school-name">UNN — PhD Engineering</div>
-          <div class="school-detail">Research positions available · Funding possible</div>
-          <a href="https://www.unn.edu.ng/pg-admissions" target="_blank" class="school-link">Supervisor matching open →</a>
-        </div>
-        <div class="school-entry">
-          <div class="school-name">Covenant University — MSc IT</div>
-          <div class="school-detail">Private university · Strong tech faculty</div>
-          <a href="https://www.covenantuniversity.edu.ng/pg" target="_blank" class="school-link">Applications open →</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- PROFESSIONAL -->
-    <div class="prog-content" id="tab-prof">
-      <div class="prog-info">
-        <h3>Professional Certificates</h3>
-        <p>For students and graduates pursuing professional certifications and short courses alongside or instead of traditional degrees. Nationwide coverage across all major professional bodies.</p>
-        <ul class="prog-list">
-          <li>ICAN, CIPM, NIM exam registration alerts</li>
-          <li>Short course and diploma openings</li>
-          <li>NYSC skill acquisition programme alerts</li>
-          <li>Federal government training scheme updates</li>
-          <li>Online certification programme deadlines</li>
-        </ul>
-      </div>
-      <div class="prog-visual">
-        <div class="badge badge-open"><span class="badge-dot"></span> Coming soon · <span class="dynamic-date-short"></span></div>
-        <div class="school-entry">
-          <div class="school-name">ICAN — November Diet</div>
-          <div class="school-detail">Registration window open · Skills level</div>
-          <a href="https://www.ican.org.ng" target="_blank" class="school-link">Exam: November 2026 →</a>
-        </div>
-        <div class="school-entry">
-          <div class="school-name">NIM Certificate Programme</div>
-          <div class="school-detail">Management certification · 6 months · Nationwide</div>
-          <a href="https://www.nim.org.ng" target="_blank" class="school-link">New intake starting →</a>
-        </div>
-        <div class="school-entry">
-          <div class="school-name">CIPM — HR Certification</div>
-          <div class="school-detail">Online and physical · Professional HR track</div>
-          <a href="https://www.cipm.org.ng" target="_blank" class="school-link">Registration open →</a>
-        </div>
-        <div class="school-entry">
-          <div class="school-name">NYSC Skill Acquisition</div>
-          <div class="school-detail">Free government training · All corps members</div>
-          <a href="https://www.nysc.gov.ng" target="_blank" class="school-link">Batch C stream 2 open →</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── UNIVERSITIES ── -->
-<section class="universities">
-  <div class="universities-inner">
-    <p class="section-label">Coverage</p>
-    <h2 class="section-title">50+ universities across every region</h2>
-    <p class="section-sub">Comprehensive nationwide coverage — every region, every programme type, every major institution.</p>
-
-    <div class="uni-region">
-      <div class="uni-region-label">North-West & North-East</div>
-      <div class="uni-grid">
-        <span class="uni-pill">ABU Zaria</span>
-        <span class="uni-pill">BUK Kano</span>
-        <span class="uni-pill">UDUS Sokoto</span>
-        <span class="uni-pill">ATBU Bauchi</span>
-        <span class="uni-pill">FUTY Yola</span>
-        <span class="uni-pill">UNIMAID</span>
-        <span class="uni-pill">Al-Qalam Katsina</span>
-      </div>
-    </div>
-
-    <div class="uni-region">
-      <div class="uni-region-label">North-Central</div>
-      <div class="uni-grid">
-        <span class="uni-pill">FUT Minna</span>
-        <span class="uni-pill">KASU Kaduna</span>
-        <span class="uni-pill">Nile University Abuja</span>
-        <span class="uni-pill">Nasarawa State Uni</span>
-        <span class="uni-pill">Benue State Uni</span>
-        <span class="uni-pill">FU Lokoja</span>
-        <span class="uni-pill">AUN Yola</span>
-      </div>
-    </div>
-
-    <div class="uni-region">
-      <div class="uni-region-label">South-West</div>
-      <div class="uni-grid">
-        <span class="uni-pill">UNILAG</span>
-        <span class="uni-pill">UI Ibadan</span>
-        <span class="uni-pill">OAU Ile-Ife</span>
-        <span class="uni-pill">FUTA Akure</span>
-        <span class="uni-pill">UNILORIN</span>
-        <span class="uni-pill">Covenant University</span>
-        <span class="uni-pill">Babcock University</span>
-      </div>
-    </div>
-
-    <div class="uni-region">
-      <div class="uni-region-label">South-East & South-South</div>
-      <div class="uni-grid">
-        <span class="uni-pill">UNN Nsukka</span>
-        <span class="uni-pill">FUTO Owerri</span>
-        <span class="uni-pill">UNIPORT</span>
-        <span class="uni-pill">UNIBEN</span>
-        <span class="uni-pill">EBSU</span>
-        <span class="uni-pill">Rivers State Uni</span>
-        <span class="uni-pill">DELSU</span>
-      </div>
-    </div>
-
-    <div class="uni-region">
-      <div class="uni-region-label">National</div>
-      <div class="uni-grid">
-        <span class="uni-pill">NOUN (All states)</span>
-        <span class="uni-pill">NDA Kaduna</span>
-        <span class="uni-pill">FUNAAB</span>
-        <span class="uni-pill">FUPRE</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── EMAIL PREVIEW ── -->
-<section class="preview">
-  <div class="preview-inner">
-    <div>
-      <p class="section-label">What you get</p>
-      <h2 class="section-title">Smart alerts — only when it matters</h2>
-      <p class="section-sub">Weekly digest every Monday. Instant alert the moment a portal opens. Urgent reminder 7 days before any deadline. No noise, no spam — just what needs your attention.</p>
-      <br>
-      <div class="carousel-controls">
-        <button class="carousel-btn" onclick="prevSlide()">←</button>
-        <div class="carousel-dots">
-          <span class="carousel-dot active" onclick="goToSlide(0)"></span>
-          <span class="carousel-dot" onclick="goToSlide(1)"></span>
-          <span class="carousel-dot" onclick="goToSlide(2)"></span>
-          <span class="carousel-dot" onclick="goToSlide(3)"></span>
-        </div>
-        <button class="carousel-btn" onclick="nextSlide()">→</button>
-      </div>
-      <div class="carousel-labels">
-        <span>DE</span><span>UTME</span><span>PG</span><span>Professional</span>
-      </div>
-      <br>
-      <a href="#signup" class="btn btn-amber btn-lg">Join the Hive</a>
-    </div>
-
-    <div class="carousel-wrapper" id="carouselWrapper">
-      <!-- Built dynamically by JS -->
-    </div>
-  </div>
-</section>
-
-<!-- ── FAQ ── -->
-<section class="faq" id="faq">
-  <div class="faq-inner">
-    <p class="section-label">FAQ</p>
-    <h2 class="section-title">Questions students ask us</h2>
-    <div class="faq-list">
-
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">
-          Is UniHive really free?
-          <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-        </button>
-        <p class="faq-a">Yes — the weekly digest and instant alerts are completely free, forever. A premium plan with additional features is coming soon, but the core product will always have a free tier.</p>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">
-          Who qualifies for Direct Entry (DE)?
-          <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-        </button>
-        <p class="faq-a">Direct Entry is open to candidates holding any of these qualifications: OND (Ordinary National Diploma), HND (Higher National Diploma), NCE (Nigeria Certificate in Education), IJMB certificate, JUPEB certificate, Cambridge A-Levels, NABTEB (ANBC or ANTC), or a First Degree from a recognised university. All these routes give you access to 200-level admission without sitting UTME.</p>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">
-          How often will I receive alerts?
-          <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-        </button>
-        <p class="faq-a">UniHive uses smart, event-driven alerts — not daily emails. You receive a weekly digest every Monday summarizing what's new. When a portal you're tracking opens, you get an instant alert that same day. When a deadline is 7 days away, you get an urgent reminder. That's it — no noise, no spam.</p>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">
-          How accurate is the information UniHive sends?
-          <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-        </button>
-        <p class="faq-a">We pull data directly from university portals and official news sources every morning. Where a portal is unreachable, we fall back to verified news sources. We always include direct links so you can confirm details yourself before applying.</p>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">
-          Can I monitor universities from a specific region only?
-          <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-        </button>
-        <p class="faq-a">Yes. During onboarding you select your preferred region and we prioritize results from there. When a standout opportunity opens in another region — say an unusual requirement waiver or no-JAMB admission — we flag it separately with clear reasons so you can decide.</p>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">
-          Can I track multiple programmes at once?
-          <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-        </button>
-        <p class="faq-a">Yes. During onboarding you can select multiple programmes — for example Direct Entry and Postgraduate at the same time. UniHive combines alerts for all your selected routes into one clean digest.</p>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">
-          How do I unsubscribe?
-          <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-        </button>
-        <p class="faq-a">Every email we send has an unsubscribe link at the bottom. One click and you're off our list permanently — no confirmation emails, no dark patterns.</p>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ── FINAL CTA ── -->
-<section class="cta-section">
-  <div class="cta-box">
-    <h2>Never miss a form again</h2>
-    <p>Join students already tracking admissions with UniHive.</p>
-    <form class="cta-form" onsubmit="handleSignup(event)">
-      <input type="email" placeholder="Your email address" required>
-      <button type="submit" class="btn btn-amber">Join the Hive</button>
-    </form>
-  </div>
-</section>
-
-<!-- ── FOOTER ── -->
-<footer>
-  <div class="footer-top">
-    <div class="footer-brand">
-      <a href="#" class="nav-logo" style="display:inline-flex;">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <title>UniHive — Every Admission. Every Deadline. One Hive.</title>
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+    <link rel="apple-touch-icon" href="assets/favicon.svg" />
+    <meta name="theme-color" content="#1B4332" />
+    <meta
+      name="description"
+      content="Nigeria's admission tracker. Never miss a university portal opening, DE form, Post-UTME or PG deadline again. Get smart personalized alerts free."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <!-- ── NAVBAR ── -->
+    <nav>
+      <a href="#" class="nav-logo">
         <svg class="logo-icon" viewBox="0 0 38 38" fill="none">
-          <rect width="38" height="38" rx="9" fill="#F59E0B"/>
-          <polygon points="19,8 27,12.5 27,21.5 19,26 11,21.5 11,12.5" fill="#1B4332"/>
-          <rect x="10" y="5" width="18" height="4" rx="1.5" fill="white"/>
-          <rect x="15" y="2" width="8" height="5" rx="1.5" fill="#F59E0B"/>
-          <circle cx="19" cy="17" r="3" fill="#F59E0B"/>
+          <rect width="38" height="38" rx="9" fill="#1B4332" />
+          <polygon
+            points="19,8 27,12.5 27,21.5 19,26 11,21.5 11,12.5"
+            fill="#F59E0B"
+          />
+          <polygon
+            points="19,11 25,14.5 25,21 19,24.5 13,21 13,14.5"
+            fill="#F59E0B"
+            opacity="0.35"
+          />
+          <rect x="10" y="5" width="18" height="4" rx="1.5" fill="white" />
+          <rect x="15" y="2" width="8" height="5" rx="1.5" fill="#F59E0B" />
+          <line
+            x1="28"
+            y1="7"
+            x2="30"
+            y2="11"
+            stroke="white"
+            stroke-width="1.5"
+            stroke-linecap="round"
+          />
+          <circle cx="30" cy="13" r="2.5" fill="white" />
+          <path
+            d="M9 15 Q5 19 9 23"
+            fill="none"
+            stroke="white"
+            stroke-width="1.5"
+            stroke-linecap="round"
+          />
+          <path
+            d="M7 12 Q1 19 7 26"
+            fill="none"
+            stroke="white"
+            stroke-width="1"
+            stroke-linecap="round"
+            opacity="0.4"
+          />
+          <circle cx="19" cy="17" r="3" fill="#1B4332" />
         </svg>
-        <span class="logo-text" style="color:white;"><span style="color:white;">Uni</span><span style="color:#F59E0B;">Hive</span></span>
+        <span class="logo-text"><span>Uni</span><span>Hive</span></span>
       </a>
-      <p>Nigeria's admission tracker.<br>Every deadline. Every portal. One daily digest.</p>
-    </div>
-    <div class="footer-links">
-      <h5>Product</h5>
-      <ul>
+
+      <ul class="nav-links" id="navLinks">
         <li><a href="#how-it-works">How it works</a></li>
         <li><a href="#features">Features</a></li>
         <li><a href="#programmes">Programmes</a></li>
-        <li><a href="#signup">Get started free</a></li>
-      </ul>
-    </div>
-    <div class="footer-links">
-      <h5>Programmes</h5>
-      <ul>
-        <li><a href="#programmes">Direct Entry</a></li>
-        <li><a href="#programmes">UTME / Post-UTME</a></li>
-        <li><a href="#programmes">Postgraduate</a></li>
-        <li><a href="#programmes">Professional</a></li>
-      </ul>
-    </div>
-    <div class="footer-links">
-      <h5>Support</h5>
-      <ul>
         <li><a href="#faq">FAQ</a></li>
-        <li><a href="mailto:hello@unihive.com.ng">Contact us</a></li>
-        <li><a href="#">Unsubscribe</a></li>
-        <li><a href="#">Privacy policy</a></li>
+        <li><a href="#signup" class="btn btn-primary">Join the Hive</a></li>
       </ul>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <p>© 2026 UniHive. Built for Nigerian students.</p>
-  </div>
-</footer>
 
-<script src="js/main.js"></script>
-</body>
+      <button class="hamburger" id="hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+
+    <!-- ── HERO ── -->
+    <section class="hero" id="signup">
+      <div class="hero-badge">
+        <span></span> 2026/2027 admission season is active now
+      </div>
+      <h1>Never miss a university<br />portal opening again</h1>
+      <p>
+        UniHive tracks every admission form, deadline, and portal opening across
+        Nigerian universities — and sends you smart personalized alerts, free.
+        For UTME, Direct Entry, Postgraduate and Professional programmes.
+      </p>
+      <form class="hero-form" onsubmit="handleSignup(event)">
+        <input type="email" placeholder="Enter your email address" required />
+        <button type="submit" class="btn btn-amber btn-lg">
+          Join the Hive
+        </button>
+      </form>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <strong>50+</strong>
+          <span>Universities tracked</span>
+        </div>
+        <div class="hero-stat">
+          <strong>Smart</strong>
+          <span>Event-driven alerts</span>
+        </div>
+        <div class="hero-stat">
+          <strong>Free</strong>
+          <span>Always, forever</span>
+        </div>
+        <div class="hero-stat">
+          <strong>4</strong>
+          <span>Programmes covered</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── HOW IT WORKS ── -->
+    <section class="how" id="how-it-works">
+      <div class="how-inner">
+        <div class="how-header">
+          <p class="section-label">How it works</p>
+          <h2 class="section-title">
+            From signup to your first alert in 60 seconds
+          </h2>
+          <p class="section-sub">
+            No manual checking. No WhatsApp groups. No missed forms. Tell us
+            what you need — we monitor, you act.
+          </p>
+        </div>
+        <div class="steps">
+          <div class="step">
+            <div class="step-num">1</div>
+            <h3>Tell us about yourself</h3>
+            <p>
+              Answer 5 quick questions — your qualification, target programme
+              (UTME, Direct Entry, PG or Professional), preferred region, and
+              course interests. Takes under a minute.
+            </p>
+          </div>
+          <div class="step">
+            <div class="step-num">2</div>
+            <h3>We monitor every day</h3>
+            <p>
+              Our agent scans 50+ university portals and official news sources
+              every morning, filtering only what matches your profile — your
+              programme, your region, your courses.
+            </p>
+          </div>
+          <div class="step">
+            <div class="step-num">3</div>
+            <h3>You get alerted when it matters</h3>
+            <p>
+              Weekly digest every Monday. Instant alert the moment a portal
+              opens or a deadline is 7 days away. No noise — only updates that
+              need your attention right now.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── FEATURES ── -->
+    <section class="features" id="features">
+      <div class="features-inner">
+        <p class="section-label">Features</p>
+        <h2 class="section-title">
+          Everything you need to stay ahead of admissions
+        </h2>
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24">
+                <circle cx="11" cy="11" r="8" />
+                <line x1="21" y1="21" x2="16.65" y2="16.65" />
+              </svg>
+            </div>
+            <h3>Portal monitoring</h3>
+            <p>
+              We check university admission portals daily and flag the moment a
+              Direct Entry, Post-UTME, PG or professional form goes live — for
+              every programme type.
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8 19.79 19.79 0 01.22 1.18 2 2 0 012.18 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.09a16 16 0 006 6l.56-.56a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"
+                />
+              </svg>
+            </div>
+            <h3>Smart alerts</h3>
+            <p>
+              No daily spam. You get a weekly digest every Monday, an instant
+              alert when a portal opens, and an urgent reminder 7 days before
+              any deadline closes.
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                />
+                <circle cx="12" cy="11" r="3" />
+              </svg>
+            </div>
+            <h3>Region filtering</h3>
+            <p>
+              Set your preferred region and get results focused on where you
+              want to study. Standout opportunities from other regions are
+              flagged separately with clear reasons.
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+                />
+                <polyline points="22,6 12,13 2,6" />
+              </svg>
+            </div>
+            <h3>Weekly digest</h3>
+            <p>
+              Every Monday morning — a clean, formatted summary of all updates
+              relevant to your profile. School-by-school breakdown with
+              requirements, fees, and direct portal links.
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24">
+                <rect x="3" y="3" width="7" height="7" />
+                <rect x="14" y="3" width="7" height="7" />
+                <rect x="14" y="14" width="7" height="7" />
+                <rect x="3" y="14" width="7" height="7" />
+              </svg>
+            </div>
+            <h3>All programmes covered</h3>
+            <p>
+              UTME and Post-UTME, Direct Entry for diploma and A-level holders,
+              Postgraduate (MSc, MBA, PhD), and Professional certifications —
+              all in one platform.
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24">
+                <polygon
+                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                />
+              </svg>
+            </div>
+            <h3>Opportunity alerts</h3>
+            <p>
+              When an exceptional opportunity opens outside your preferred
+              region, we flag it clearly with facts and reasons — you decide
+              whether it's worth considering.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── PROGRAMMES ── -->
+    <section class="programmes" id="programmes">
+      <div class="programmes-inner">
+        <p class="section-label">Programmes</p>
+        <h2 class="section-title">Built for every type of Nigerian student</h2>
+        <p class="section-sub">
+          Tell UniHive what you're pursuing and we track only what matters to
+          you.
+        </p>
+
+        <div class="prog-tabs">
+          <button class="prog-tab active" onclick="switchTab('de')">
+            Direct Entry
+          </button>
+          <button class="prog-tab" onclick="switchTab('utme')">
+            UTME / Post-UTME
+          </button>
+          <button class="prog-tab" onclick="switchTab('pg')">
+            Postgraduate
+          </button>
+          <button class="prog-tab" onclick="switchTab('prof')">
+            Professional
+          </button>
+        </div>
+
+        <!-- DE -->
+        <div class="prog-content active" id="tab-de">
+          <div class="prog-info">
+            <h3>Direct Entry — Diploma & A-Level to B.Sc</h3>
+            <p>
+              For candidates holding a diploma or A-level qualification looking
+              to enter university at 200 level — skipping 100 level entirely.
+              UniHive monitors DE portals across all federal, state and private
+              universities.
+            </p>
+            <div class="qual-tags">
+              <span class="qual-tag">OND</span>
+              <span class="qual-tag">HND</span>
+              <span class="qual-tag">NCE</span>
+              <span class="qual-tag">IJMB</span>
+              <span class="qual-tag">JUPEB</span>
+              <span class="qual-tag">A-Levels</span>
+              <span class="qual-tag">First Degree</span>
+            </div>
+            <ul class="prog-list">
+              <li>Portal openings for 200-level DE admission</li>
+              <li>Grade requirements per school and qualification</li>
+              <li>Cognate subject matching for your field</li>
+              <li>JAMB DE registration deadlines</li>
+              <li>Application fees and direct portal links</li>
+            </ul>
+          </div>
+          <div class="prog-visual">
+            <div class="badge badge-open">
+              <span class="badge-dot"></span> Live updates ·
+              <span class="dynamic-date-short"></span>
+            </div>
+            <div class="school-entry">
+              <div class="school-name">ABU Zaria</div>
+              <div class="school-detail">
+                Computer Science, Engineering · OND/HND Lower Credit min
+              </div>
+              <a
+                href="https://www.abu.edu.ng/admissions"
+                target="_blank"
+                class="school-link"
+                >Portal open · Deadline: Oct 30 →</a
+              >
+            </div>
+            <div class="school-entry">
+              <div class="school-name">ATBU Bauchi</div>
+              <div class="school-detail">
+                Computer Engineering, IT, Software Engineering
+              </div>
+              <a
+                href="https://www.atbu.edu.ng/admissions"
+                target="_blank"
+                class="school-link"
+                >Portal open · Fee: ₦2,000 →</a
+              >
+            </div>
+            <div class="school-entry">
+              <div class="school-name">BUK Kano</div>
+              <div class="school-detail">
+                Computer Science, Cybersecurity · Upper Credit preferred
+              </div>
+              <a
+                href="https://www.buk.edu.ng/admissions"
+                target="_blank"
+                class="school-link"
+                >Portal open · JAMB min: 200 →</a
+              >
+            </div>
+            <div class="school-entry">
+              <div class="school-name">NOUN</div>
+              <div class="school-detail">
+                CS, IT, Cybersecurity · All qualifications · No JAMB
+              </div>
+              <a
+                href="https://nouonline.net"
+                target="_blank"
+                class="school-link"
+                >Always open · Rolling admissions →</a
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- UTME -->
+        <div class="prog-content" id="tab-utme">
+          <div class="prog-info">
+            <h3>UTME / Post-UTME</h3>
+            <p>
+              For WAEC/NECO candidates who have written JAMB and are waiting for
+              Post-UTME forms, screening dates and cut-off marks across their
+              preferred universities nationwide.
+            </p>
+            <ul class="prog-list">
+              <li>Post-UTME form release alerts</li>
+              <li>Cut-off mark updates per school</li>
+              <li>Screening date and venue notifications</li>
+              <li>Subject combination requirements</li>
+              <li>Supplementary and second batch announcements</li>
+            </ul>
+          </div>
+          <div class="prog-visual">
+            <div class="badge badge-open">
+              <span class="badge-dot"></span> Tracking active ·
+              <span class="dynamic-date-short"></span>
+            </div>
+            <div class="school-entry">
+              <div class="school-name">University of Ilorin</div>
+              <div class="school-detail">
+                Post-UTME screening ongoing · Cut-off: 200
+              </div>
+              <a
+                href="https://www.unilorin.edu.ng/admissions"
+                target="_blank"
+                class="school-link"
+                >Forms available now →</a
+              >
+            </div>
+            <div class="school-entry">
+              <div class="school-name">Nasarawa State University</div>
+              <div class="school-detail">
+                Post-UTME registration open · All courses
+              </div>
+              <a
+                href="https://www.nsuk.edu.ng/admissions"
+                target="_blank"
+                class="school-link"
+                >Deadline: Nov 15 →</a
+              >
+            </div>
+            <div class="school-entry">
+              <div class="school-name">University of Lagos</div>
+              <div class="school-detail">
+                Post-UTME portal open · All faculties
+              </div>
+              <a
+                href="https://www.unilag.edu.ng/admissions"
+                target="_blank"
+                class="school-link"
+                >Cut-off: 210 · Closes Nov 20 →</a
+              >
+            </div>
+            <div class="school-entry">
+              <div class="school-name">OAU Ile-Ife</div>
+              <div class="school-detail">
+                Supplementary admission ongoing · Selected courses
+              </div>
+              <a
+                href="https://www.oauife.edu.ng/admissions"
+                target="_blank"
+                class="school-link"
+                >Still accepting applications →</a
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- PG -->
+        <div class="prog-content" id="tab-pg">
+          <div class="prog-info">
+            <h3>Postgraduate Programmes</h3>
+            <p>
+              For B.Sc holders looking to pursue MSc, MBA, or PhD programmes
+              across federal, state and private universities. UniHive tracks PG
+              admission forms, entry requirements and thesis deadlines
+              nationwide.
+            </p>
+            <ul class="prog-list">
+              <li>MSc / MBA / PhD form openings</li>
+              <li>Entry requirements per programme</li>
+              <li>Research supervisor availability</li>
+              <li>Scholarship and funding alerts</li>
+              <li>Application and resumption deadlines</li>
+            </ul>
+          </div>
+          <div class="prog-visual">
+            <div class="badge badge-open">
+              <span class="badge-dot"></span> Monitoring active ·
+              <span class="dynamic-date-short"></span>
+            </div>
+            <div class="school-entry">
+              <div class="school-name">ABU Zaria — MSc Computer Science</div>
+              <div class="school-detail">
+                Min: Second Class Lower · All universities welcome
+              </div>
+              <a
+                href="https://www.abu.edu.ng/pg-admissions"
+                target="_blank"
+                class="school-link"
+                >Applications open · Fee: ₦10,000 →</a
+              >
+            </div>
+            <div class="school-entry">
+              <div class="school-name">UI Ibadan — MBA Programme</div>
+              <div class="school-detail">
+                2026/2027 session · Full and part-time options
+              </div>
+              <a
+                href="https://www.ui.edu.ng/pg-admissions"
+                target="_blank"
+                class="school-link"
+                >Closing soon →</a
+              >
+            </div>
+            <div class="school-entry">
+              <div class="school-name">UNN — PhD Engineering</div>
+              <div class="school-detail">
+                Research positions available · Funding possible
+              </div>
+              <a
+                href="https://www.unn.edu.ng/pg-admissions"
+                target="_blank"
+                class="school-link"
+                >Supervisor matching open →</a
+              >
+            </div>
+            <div class="school-entry">
+              <div class="school-name">Covenant University — MSc IT</div>
+              <div class="school-detail">
+                Private university · Strong tech faculty
+              </div>
+              <a
+                href="https://www.covenantuniversity.edu.ng/pg"
+                target="_blank"
+                class="school-link"
+                >Applications open →</a
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- PROFESSIONAL -->
+        <div class="prog-content" id="tab-prof">
+          <div class="prog-info">
+            <h3>Professional Certificates</h3>
+            <p>
+              For students and graduates pursuing professional certifications
+              and short courses alongside or instead of traditional degrees.
+              Nationwide coverage across all major professional bodies.
+            </p>
+            <ul class="prog-list">
+              <li>ICAN, CIPM, NIM exam registration alerts</li>
+              <li>Short course and diploma openings</li>
+              <li>NYSC skill acquisition programme alerts</li>
+              <li>Federal government training scheme updates</li>
+              <li>Online certification programme deadlines</li>
+            </ul>
+          </div>
+          <div class="prog-visual">
+            <div class="badge badge-open">
+              <span class="badge-dot"></span> Coming soon ·
+              <span class="dynamic-date-short"></span>
+            </div>
+            <div class="school-entry">
+              <div class="school-name">ICAN — November Diet</div>
+              <div class="school-detail">
+                Registration window open · Skills level
+              </div>
+              <a
+                href="https://www.ican.org.ng"
+                target="_blank"
+                class="school-link"
+                >Exam: November 2026 →</a
+              >
+            </div>
+            <div class="school-entry">
+              <div class="school-name">NIM Certificate Programme</div>
+              <div class="school-detail">
+                Management certification · 6 months · Nationwide
+              </div>
+              <a
+                href="https://www.nim.org.ng"
+                target="_blank"
+                class="school-link"
+                >New intake starting →</a
+              >
+            </div>
+            <div class="school-entry">
+              <div class="school-name">CIPM — HR Certification</div>
+              <div class="school-detail">
+                Online and physical · Professional HR track
+              </div>
+              <a
+                href="https://www.cipm.org.ng"
+                target="_blank"
+                class="school-link"
+                >Registration open →</a
+              >
+            </div>
+            <div class="school-entry">
+              <div class="school-name">NYSC Skill Acquisition</div>
+              <div class="school-detail">
+                Free government training · All corps members
+              </div>
+              <a
+                href="https://www.nysc.gov.ng"
+                target="_blank"
+                class="school-link"
+                >Batch C stream 2 open →</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── UNIVERSITIES ── -->
+    <section class="universities">
+      <div class="universities-inner">
+        <p class="section-label">Coverage</p>
+        <h2 class="section-title">50+ universities across every region</h2>
+        <p class="section-sub">
+          Comprehensive nationwide coverage — every region, every programme
+          type, every major institution.
+        </p>
+
+        <div class="uni-region">
+          <div class="uni-region-label">North-West & North-East</div>
+          <div class="uni-grid">
+            <span class="uni-pill">ABU Zaria</span>
+            <span class="uni-pill">BUK Kano</span>
+            <span class="uni-pill">UDUS Sokoto</span>
+            <span class="uni-pill">ATBU Bauchi</span>
+            <span class="uni-pill">FUTY Yola</span>
+            <span class="uni-pill">UNIMAID</span>
+            <span class="uni-pill">Al-Qalam Katsina</span>
+          </div>
+        </div>
+
+        <div class="uni-region">
+          <div class="uni-region-label">North-Central</div>
+          <div class="uni-grid">
+            <span class="uni-pill">FUT Minna</span>
+            <span class="uni-pill">KASU Kaduna</span>
+            <span class="uni-pill">Nile University Abuja</span>
+            <span class="uni-pill">Nasarawa State Uni</span>
+            <span class="uni-pill">Benue State Uni</span>
+            <span class="uni-pill">FU Lokoja</span>
+            <span class="uni-pill">AUN Yola</span>
+          </div>
+        </div>
+
+        <div class="uni-region">
+          <div class="uni-region-label">South-West</div>
+          <div class="uni-grid">
+            <span class="uni-pill">UNILAG</span>
+            <span class="uni-pill">UI Ibadan</span>
+            <span class="uni-pill">OAU Ile-Ife</span>
+            <span class="uni-pill">FUTA Akure</span>
+            <span class="uni-pill">UNILORIN</span>
+            <span class="uni-pill">Covenant University</span>
+            <span class="uni-pill">Babcock University</span>
+          </div>
+        </div>
+
+        <div class="uni-region">
+          <div class="uni-region-label">South-East & South-South</div>
+          <div class="uni-grid">
+            <span class="uni-pill">UNN Nsukka</span>
+            <span class="uni-pill">FUTO Owerri</span>
+            <span class="uni-pill">UNIPORT</span>
+            <span class="uni-pill">UNIBEN</span>
+            <span class="uni-pill">EBSU</span>
+            <span class="uni-pill">Rivers State Uni</span>
+            <span class="uni-pill">DELSU</span>
+          </div>
+        </div>
+
+        <div class="uni-region">
+          <div class="uni-region-label">National</div>
+          <div class="uni-grid">
+            <span class="uni-pill">NOUN (All states)</span>
+            <span class="uni-pill">NDA Kaduna</span>
+            <span class="uni-pill">FUNAAB</span>
+            <span class="uni-pill">FUPRE</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── EMAIL PREVIEW ── -->
+    <section class="preview">
+      <div class="preview-inner">
+        <div>
+          <p class="section-label">What you get</p>
+          <h2 class="section-title">Smart alerts — only when it matters</h2>
+          <p class="section-sub">
+            Weekly digest every Monday. Instant alert the moment a portal opens.
+            Urgent reminder 7 days before any deadline. No noise, no spam — just
+            what needs your attention.
+          </p>
+          <br />
+          <div class="carousel-controls">
+            <button class="carousel-btn" onclick="prevSlide()">←</button>
+            <div class="carousel-dots">
+              <span class="carousel-dot active" onclick="goToSlide(0)"></span>
+              <span class="carousel-dot" onclick="goToSlide(1)"></span>
+              <span class="carousel-dot" onclick="goToSlide(2)"></span>
+              <span class="carousel-dot" onclick="goToSlide(3)"></span>
+            </div>
+            <button class="carousel-btn" onclick="nextSlide()">→</button>
+          </div>
+          <div class="carousel-labels">
+            <span>DE</span><span>UTME</span><span>PG</span
+            ><span>Professional</span>
+          </div>
+          <br />
+          <a href="#signup" class="btn btn-amber btn-lg">Join the Hive</a>
+        </div>
+
+        <div class="carousel-wrapper" id="carouselWrapper">
+          <!-- Built dynamically by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ── FAQ ── -->
+    <section class="faq" id="faq">
+      <div class="faq-inner">
+        <p class="section-label">FAQ</p>
+        <h2 class="section-title">Questions students ask us</h2>
+        <div class="faq-list">
+          <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">
+              Is UniHive really free?
+              <svg
+                class="faq-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              >
+                <line x1="12" y1="5" x2="12" y2="19" />
+                <line x1="5" y1="12" x2="19" y2="12" />
+              </svg>
+            </button>
+            <p class="faq-a">
+              Yes — the weekly digest and instant alerts are completely free,
+              forever. A premium plan with additional features is coming soon,
+              but the core product will always have a free tier.
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">
+              Who qualifies for Direct Entry (DE)?
+              <svg
+                class="faq-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              >
+                <line x1="12" y1="5" x2="12" y2="19" />
+                <line x1="5" y1="12" x2="19" y2="12" />
+              </svg>
+            </button>
+            <p class="faq-a">
+              Direct Entry is open to candidates holding any of these
+              qualifications: OND (Ordinary National Diploma), HND (Higher
+              National Diploma), NCE (Nigeria Certificate in Education), IJMB
+              certificate, JUPEB certificate, Cambridge A-Levels, NABTEB (ANBC
+              or ANTC), or a First Degree from a recognised university. All
+              these routes give you access to 200-level admission without
+              sitting UTME.
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">
+              How often will I receive alerts?
+              <svg
+                class="faq-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              >
+                <line x1="12" y1="5" x2="12" y2="19" />
+                <line x1="5" y1="12" x2="19" y2="12" />
+              </svg>
+            </button>
+            <p class="faq-a">
+              UniHive uses smart, event-driven alerts — not daily emails. You
+              receive a weekly digest every Monday summarizing what's new. When
+              a portal you're tracking opens, you get an instant alert that same
+              day. When a deadline is 7 days away, you get an urgent reminder.
+              That's it — no noise, no spam.
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">
+              How accurate is the information UniHive sends?
+              <svg
+                class="faq-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              >
+                <line x1="12" y1="5" x2="12" y2="19" />
+                <line x1="5" y1="12" x2="19" y2="12" />
+              </svg>
+            </button>
+            <p class="faq-a">
+              We pull data directly from university portals and official news
+              sources every morning. Where a portal is unreachable, we fall back
+              to verified news sources. We always include direct links so you
+              can confirm details yourself before applying.
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">
+              Can I monitor universities from a specific region only?
+              <svg
+                class="faq-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              >
+                <line x1="12" y1="5" x2="12" y2="19" />
+                <line x1="5" y1="12" x2="19" y2="12" />
+              </svg>
+            </button>
+            <p class="faq-a">
+              Yes. During onboarding you select your preferred region and we
+              prioritize results from there. When a standout opportunity opens
+              in another region — say an unusual requirement waiver or no-JAMB
+              admission — we flag it separately with clear reasons so you can
+              decide.
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">
+              Can I track multiple programmes at once?
+              <svg
+                class="faq-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              >
+                <line x1="12" y1="5" x2="12" y2="19" />
+                <line x1="5" y1="12" x2="19" y2="12" />
+              </svg>
+            </button>
+            <p class="faq-a">
+              Yes. During onboarding you can select multiple programmes — for
+              example Direct Entry and Postgraduate at the same time. UniHive
+              combines alerts for all your selected routes into one clean
+              digest.
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">
+              How do I unsubscribe?
+              <svg
+                class="faq-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              >
+                <line x1="12" y1="5" x2="12" y2="19" />
+                <line x1="5" y1="12" x2="19" y2="12" />
+              </svg>
+            </button>
+            <p class="faq-a">
+              Every email we send has an unsubscribe link at the bottom. One
+              click and you're off our list permanently — no confirmation
+              emails, no dark patterns.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── FINAL CTA ── -->
+    <section class="cta-section">
+      <div class="cta-box">
+        <h2>Never miss a form again</h2>
+        <p>Join students already tracking admissions with UniHive.</p>
+        <form class="cta-form" onsubmit="handleSignup(event)">
+          <input type="email" placeholder="Your email address" required />
+          <button type="submit" class="btn btn-amber">Join the Hive</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- ── FOOTER ── -->
+    <footer>
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="#" class="nav-logo" style="display: inline-flex">
+            <svg class="logo-icon" viewBox="0 0 38 38" fill="none">
+              <rect width="38" height="38" rx="9" fill="#F59E0B" />
+              <polygon
+                points="19,8 27,12.5 27,21.5 19,26 11,21.5 11,12.5"
+                fill="#1B4332"
+              />
+              <rect x="10" y="5" width="18" height="4" rx="1.5" fill="white" />
+              <rect x="15" y="2" width="8" height="5" rx="1.5" fill="#F59E0B" />
+              <circle cx="19" cy="17" r="3" fill="#F59E0B" />
+            </svg>
+            <span class="logo-text" style="color: white"
+              ><span style="color: white">Uni</span
+              ><span style="color: #f59e0b">Hive</span></span
+            >
+          </a>
+          <p>
+            Nigeria's admission tracker.<br />Every deadline. Every portal. One
+            daily digest.
+          </p>
+        </div>
+        <div class="footer-links">
+          <h5>Product</h5>
+          <ul>
+            <li><a href="#how-it-works">How it works</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#programmes">Programmes</a></li>
+            <li><a href="#signup">Get started free</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h5>Programmes</h5>
+          <ul>
+            <li><a href="#programmes">Direct Entry</a></li>
+            <li><a href="#programmes">UTME / Post-UTME</a></li>
+            <li><a href="#programmes">Postgraduate</a></li>
+            <li><a href="#programmes">Professional</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h5>Support</h5>
+          <ul>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="mailto:hello@unihive.com.ng">Contact us</a></li>
+            <li><a href="#">Unsubscribe</a></li>
+            <li><a href="#">Privacy policy</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 UniHive. Built for Nigerian students.</p>
+      </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+  </body>
 </html>
