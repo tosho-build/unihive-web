@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Join UniHive — Set Up Your Admission Tracker</title>
+  <meta name="description" content="Tell UniHive what you're pursuing and we'll monitor every relevant university portal for you.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <meta name="theme-color" content="#1B4332">
+  <link rel="stylesheet" href="css/onboard.css">
+</head>
+<body>
+
+<!-- ── NAVBAR ── -->
+<nav class="onboard-nav">
+  <a href="index.html" class="nav-logo">
+    <svg class="logo-icon" viewBox="0 0 38 38" fill="none">
+      <rect width="38" height="38" rx="9" fill="#1B4332"/>
+      <polygon points="19,8 27,12.5 27,21.5 19,26 11,21.5 11,12.5" fill="#F59E0B"/>
+      <polygon points="19,11 25,14.5 25,21 19,24.5 13,21 13,14.5" fill="#F59E0B" opacity="0.35"/>
+      <rect x="10" y="5" width="18" height="4" rx="1.5" fill="white"/>
+      <rect x="15" y="2" width="8" height="5" rx="1.5" fill="#F59E0B"/>
+      <line x1="28" y1="7" x2="30" y2="11" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+      <circle cx="30" cy="13" r="2.5" fill="white"/>
+      <path d="M9 15 Q5 19 9 23" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+      <path d="M7 12 Q1 19 7 26" fill="none" stroke="white" stroke-width="1" stroke-linecap="round" opacity="0.4"/>
+      <circle cx="19" cy="17" r="3" fill="#1B4332"/>
+    </svg>
+    <span class="logo-text"><span>Uni</span><span>Hive</span></span>
+  </a>
+  <a href="index.html" class="back-link">← Back to home</a>
+</nav>
+
+<!-- ── MAIN ── -->
+<main class="onboard-main">
+  <div class="onboard-container">
+
+    <!-- Progress Bar -->
+    <div class="progress-wrap">
+      <div class="progress-steps" id="progressSteps">
+        <div class="prog-step active" data-step="1">
+          <div class="prog-dot">1</div>
+          <span class="prog-label">Details</span>
+        </div>
+        <div class="prog-line" id="line1"></div>
+        <div class="prog-step" data-step="2">
+          <div class="prog-dot">2</div>
+          <span class="prog-label">Programme</span>
+        </div>
+        <div class="prog-line" id="line2"></div>
+        <div class="prog-step" data-step="3">
+          <div class="prog-dot">3</div>
+          <span class="prog-label">Qualification</span>
+        </div>
+        <div class="prog-line" id="line3"></div>
+        <div class="prog-step" data-step="4">
+          <div class="prog-dot">4</div>
+          <span class="prog-label">Region</span>
+        </div>
+        <div class="prog-line" id="line4"></div>
+        <div class="prog-step" data-step="5">
+          <div class="prog-dot">5</div>
+          <span class="prog-label">Courses</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Steps -->
+    <div class="steps-wrap">
+
+      <!-- Step 1 — Details -->
+      <div class="step active" id="step1">
+        <div class="step-header">
+          <p class="step-num">Step 1 of 5</p>
+          <h2 class="step-title">Let's start with your details</h2>
+          <p class="step-sub">We'll use these to send your personalized alerts.</p>
+        </div>
+        <div class="form-group">
+          <label for="firstName">First name</label>
+          <input type="text" id="firstName" placeholder="e.g. Ibrahim" autocomplete="given-name">
+          <span class="field-error" id="firstNameError"></span>
+        </div>
+        <div class="form-group">
+          <label for="email">Email address</label>
+          <input type="email" id="email" placeholder="e.g. ibrahim@gmail.com" autocomplete="email">
+          <span class="field-error" id="emailError"></span>
+        </div>
+        <button class="btn-next" onclick="goNext(1)">Continue <span>→</span></button>
+      </div>
+
+      <!-- Step 2 — Programme -->
+      <div class="step" id="step2">
+        <div class="step-header">
+          <p class="step-num">Step 2 of 5</p>
+          <h2 class="step-title">What are you pursuing?</h2>
+          <p class="step-sub">Select all that apply — you can track multiple routes.</p>
+        </div>
+        <div class="options-grid" id="programmeOptions">
+          <div class="option-card" data-value="utme" onclick="toggleOption(this, 'programme')">
+            <div class="option-icon">🎯</div>
+            <div class="option-info">
+              <strong>UTME / Post-UTME</strong>
+              <span>For WAEC/NECO candidates awaiting Post-UTME forms and screening</span>
+            </div>
+            <div class="option-check">✓</div>
+          </div>
+          <div class="option-card" data-value="de" onclick="toggleOption(this, 'programme')">
+            <div class="option-icon">🎓</div>
+            <div class="option-info">
+              <strong>Direct Entry</strong>
+              <span>For ND, HND, NCE, IJMB, JUPEB and A-Level holders entering at 200 level</span>
+            </div>
+            <div class="option-check">✓</div>
+          </div>
+          <div class="option-card" data-value="pg" onclick="toggleOption(this, 'programme')">
+            <div class="option-icon">📚</div>
+            <div class="option-info">
+              <strong>Postgraduate</strong>
+              <span>For B.Sc holders pursuing MSc, MBA, PhD or other PG programmes</span>
+            </div>
+            <div class="option-check">✓</div>
+          </div>
+          <div class="option-card" data-value="prof" onclick="toggleOption(this, 'programme')">
+            <div class="option-icon">📋</div>
+            <div class="option-info">
+              <strong>Professional Certificate</strong>
+              <span>ICAN, CIPM, NIM, NYSC skill acquisition and other professional bodies</span>
+            </div>
+            <div class="option-check">✓</div>
+          </div>
+        </div>
+        <span class="field-error" id="programmeError"></span>
+        <div class="btn-row">
+          <button class="btn-back" onclick="goBack(2)">← Back</button>
+          <button class="btn-next" onclick="goNext(2)">Continue <span>→</span></button>
+        </div>
+      </div>
+
+      <!-- Step 3 — Qualification -->
+      <div class="step" id="step3">
+        <div class="step-header">
+          <p class="step-num">Step 3 of 5</p>
+          <h2 class="step-title">What's your highest qualification?</h2>
+          <p class="step-sub">Pick the one that best describes where you are right now.</p>
+        </div>
+        <div class="options-grid single" id="qualOptions">
+          <div class="option-card" data-value="waec" onclick="selectSingle(this, 'qual')">
+            <div class="option-icon">📝</div>
+            <div class="option-info">
+              <strong>WAEC / NECO / NABTEB</strong>
+              <span>O'Level certificate only — no diploma yet</span>
+            </div>
+            <div class="option-check">✓</div>
+          </div>
+          <div class="option-card" data-value="ond" onclick="selectSingle(this, 'qual')">
+            <div class="option-icon">🏫</div>
+            <div class="option-info">
+              <strong>OND — Ordinary National Diploma</strong>
+              <span>Currently studying or completed OND at a polytechnic</span>
+            </div>
+            <div class="option-check">✓</div>
+          </div>
+          <div class="option-card" data-value="hnd" onclick="selectSingle(this, 'qual')">
+            <div class="option-icon">🏛️</div>
+            <div class="option-info">
+              <strong>HND — Higher National Diploma</strong>
+              <span>Currently studying or completed HND at a polytechnic</span>
+            </div>
+            <div class="option-check">✓</div>
+          </div>
+          <div class="option-card" data-value="nce" onclick="selectSingle(this, 'qual')">
+            <div class="option-icon">🎒</div>
+            <div class="option-info">
+              <strong>NCE — Nigeria Certificate in Education</strong>
+              <span>Teacher training certificate from a College of Education</span>
+            </div>
+            <div class="option-check">✓</div>
+          </div>
+          <div class="option-card" data-value="ijmb" onclick="selectSingle(this, 'qual')">
+            <div class="option-icon">📖</div>
+            <div class="option-info">
+              <strong>IJMB / JUPEB</strong>
+              <span>A-Level equivalent programme for direct university entry</span>
+            </div>
+            <div class="option-check">✓</div>
+          </div>
+          <div class="option-card" data-value="alevel" onclick="selectSingle(this, 'qual')">
+            <div class="option-icon">🌍</div>
+            <div class="option-info">
+              <strong>Cambridge A-Levels / IB</strong>
+              <span>International A-Level or Baccalaureate certificate</span>
+            </div>
+            <div class="option-check">✓</div>
+          </div>
+          <div class="option-card" data-value="degree" onclick="selectSingle(this, 'qual')">
+            <div class="option-icon">🎓</div>
+            <div class="option-info">
+              <strong>First Degree — B.Sc / B.A / B.Eng</strong>
+              <span>Already holds a university degree, pursuing another or PG</span>
+            </div>
+            <div class="option-check">✓</div>
+          </div>
+          <div class="option-card" data-value="other" onclick="selectSingle(this, 'qual')">
+            <div class="option-icon">📌</div>
+            <div class="option-info">
+              <strong>Other</strong>
+              <span>A qualification not listed above</span>
+            </div>
+            <div class="option-check">✓</div>
+          </div>
+        </div>
+        <span class="field-error" id="qualError"></span>
+        <div class="btn-row">
+          <button class="btn-back" onclick="goBack(3)">← Back</button>
+          <button class="btn-next" onclick="goNext(3)">Continue <span>→</span></button>
+        </div>
+      </div>
+
+      <!-- Step 4 — Region -->
+      <div class="step" id="step4">
+        <div class="step-header">
+          <p class="step-num">Step 4 of 5</p>
+          <h2 class="step-title">Where do you want to study?</h2>
+          <p class="step-sub">We'll prioritize universities in your preferred region. Standout opportunities elsewhere will still be flagged.</p>
+        </div>
+        <div class="options-grid single" id="regionOptions">
+          <div class="option-card" data-value="north" onclick="selectSingle(this, 'region')">
+            <div class="option-icon">🏔️</div>
+            <div class="option-info">
+              <strong>Northern Nigeria</strong>
+              <span>ABU Zaria, ATBU Bauchi, BUK Kano, FUT Minna and more</span>
+            </div>
+            <div class="option-check">✓</div>
+          </div>
+          <div class="option-card" data-value="southwest" onclick="selectSingle(this, 'region')">
+            <div class="option-icon">🌴</div>
+            <div class="option-info">
+              <strong>South-West</strong>
+              <span>UNILAG, UI Ibadan, OAU Ile-Ife, UNILORIN and more</span>
+            </div>
+            <div class="option-check">✓</div>
+          </div>
+          <div class="option-card" data-value="southeast" onclick="selectSingle(this, 'region')">
+            <div class="option-icon">🌿</div>
+            <div class="option-info">
+              <strong>South-East</strong>
+              <span>UNN Nsukka, FUTO Owerri, ESUT Enugu and more</span>
+            </div>
+            <div class="option-check">✓</div>
+          </div>
+          <div class="option-card" data-value="southsouth" onclick="selectSingle(this, 'region')">
+            <div class="option-icon">🌊</div>
+            <div class="option-info">
+              <strong>South-South</strong>
+              <span>UNIPORT, UNIBEN, Rivers State Uni and more</span>
+            </div>
+            <div class="option-check">✓</div>
+          </div>
+          <div class="option-card" data-value="any" onclick="selectSingle(this, 'region')">
+            <div class="option-icon">🇳🇬</div>
+            <div class="option-info">
+              <strong>Open to any region</strong>
+              <span>Show me the best opportunities nationwide</span>
+            </div>
+            <div class="option-check">✓</div>
+          </div>
+        </div>
+        <span class="field-error" id="regionError"></span>
+        <div class="btn-row">
+          <button class="btn-back" onclick="goBack(4)">← Back</button>
+          <button class="btn-next" onclick="goNext(4)">Continue <span>→</span></button>
+        </div>
+      </div>
+
+      <!-- Step 5 — Courses -->
+      <div class="step" id="step5">
+        <div class="step-header">
+          <p class="step-num">Step 5 of 5</p>
+          <h2 class="step-title">What do you want to study?</h2>
+          <p class="step-sub">Select all courses you're interested in. We'll track admissions for these specifically.</p>
+        </div>
+        <div class="course-search-wrap">
+          <input type="text" id="courseSearch" placeholder="Search for a course..." oninput="filterCourses(this.value)">
+        </div>
+        <div class="course-tags" id="courseTags">
+          <span class="course-tag" data-value="computer-science" onclick="toggleCourse(this)">Computer Science</span>
+          <span class="course-tag" data-value="computer-engineering" onclick="toggleCourse(this)">Computer Engineering</span>
+          <span class="course-tag" data-value="cybersecurity" onclick="toggleCourse(this)">Cybersecurity</span>
+          <span class="course-tag" data-value="information-technology" onclick="toggleCourse(this)">Information Technology</span>
+          <span class="course-tag" data-value="software-engineering" onclick="toggleCourse(this)">Software Engineering</span>
+          <span class="course-tag" data-value="electrical-engineering" onclick="toggleCourse(this)">Electrical Engineering</span>
+          <span class="course-tag" data-value="mechanical-engineering" onclick="toggleCourse(this)">Mechanical Engineering</span>
+          <span class="course-tag" data-value="civil-engineering" onclick="toggleCourse(this)">Civil Engineering</span>
+          <span class="course-tag" data-value="medicine" onclick="toggleCourse(this)">Medicine & Surgery</span>
+          <span class="course-tag" data-value="pharmacy" onclick="toggleCourse(this)">Pharmacy</span>
+          <span class="course-tag" data-value="nursing" onclick="toggleCourse(this)">Nursing</span>
+          <span class="course-tag" data-value="law" onclick="toggleCourse(this)">Law</span>
+          <span class="course-tag" data-value="accounting" onclick="toggleCourse(this)">Accounting</span>
+          <span class="course-tag" data-value="economics" onclick="toggleCourse(this)">Economics</span>
+          <span class="course-tag" data-value="business-admin" onclick="toggleCourse(this)">Business Administration</span>
+          <span class="course-tag" data-value="mass-comm" onclick="toggleCourse(this)">Mass Communication</span>
+          <span class="course-tag" data-value="architecture" onclick="toggleCourse(this)">Architecture</span>
+          <span class="course-tag" data-value="education" onclick="toggleCourse(this)">Education</span>
+          <span class="course-tag" data-value="agriculture" onclick="toggleCourse(this)">Agriculture</span>
+          <span class="course-tag" data-value="geology" onclick="toggleCourse(this)">Geology</span>
+          <span class="course-tag" data-value="biochemistry" onclick="toggleCourse(this)">Biochemistry</span>
+          <span class="course-tag" data-value="microbiology" onclick="toggleCourse(this)">Microbiology</span>
+          <span class="course-tag" data-value="physics" onclick="toggleCourse(this)">Physics</span>
+          <span class="course-tag" data-value="mathematics" onclick="toggleCourse(this)">Mathematics</span>
+          <span class="course-tag" data-value="statistics" onclick="toggleCourse(this)">Statistics</span>
+          <span class="course-tag" data-value="political-science" onclick="toggleCourse(this)">Political Science</span>
+          <span class="course-tag" data-value="sociology" onclick="toggleCourse(this)">Sociology</span>
+          <span class="course-tag" data-value="english" onclick="toggleCourse(this)">English & Literature</span>
+          <span class="course-tag" data-value="history" onclick="toggleCourse(this)">History</span>
+          <span class="course-tag" data-value="finance" onclick="toggleCourse(this)">Finance</span>
+          <span class="course-tag" data-value="banking" onclick="toggleCourse(this)">Banking & Finance</span>
+          <span class="course-tag" data-value="public-admin" onclick="toggleCourse(this)">Public Administration</span>
+          <span class="course-tag" data-value="environmental" onclick="toggleCourse(this)">Environmental Science</span>
+          <span class="course-tag" data-value="food-tech" onclick="toggleCourse(this)">Food Technology</span>
+          <span class="course-tag" data-value="chemical-engineering" onclick="toggleCourse(this)">Chemical Engineering</span>
+        </div>
+        <div class="selected-courses-wrap" id="selectedCoursesWrap" style="display:none;">
+          <p class="selected-label">Selected: <span id="selectedCount">0</span></p>
+        </div>
+        <span class="field-error" id="coursesError"></span>
+        <div class="btn-row">
+          <button class="btn-back" onclick="goBack(5)">← Back</button>
+          <button class="btn-next" onclick="goNext(5)">Complete Setup <span>→</span></button>
+        </div>
+      </div>
+
+      <!-- Confirmation -->
+      <div class="step" id="stepConfirm">
+        <div class="confirm-wrap">
+          <div class="confirm-icon">🎓</div>
+          <h2 class="confirm-title">You're in the hive!</h2>
+          <p class="confirm-sub">Your profile is set up. We're now monitoring universities that match what you told us.</p>
+
+          <div class="confirm-summary" id="confirmSummary">
+            <!-- Populated by JS -->
+          </div>
+
+          <div class="confirm-email-box">
+            <div class="confirm-email-icon">📧</div>
+            <div>
+              <strong>One last step — verify your email</strong>
+              <p>We've sent a confirmation link to <span id="confirmEmail"></span>. Click it to activate your alerts.</p>
+            </div>
+          </div>
+
+          <div class="confirm-note">
+            <strong>What happens next?</strong>
+            <p>We'll alert you the moment something relevant to your profile opens up — a portal launch, a deadline approaching, or a standout opportunity. No noise, only what matters.</p>
+          </div>
+
+          <a href="index.html" class="btn-home">← Back to UniHive</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<script src="js/onboard.js"></script>
+</body>
+</html>
