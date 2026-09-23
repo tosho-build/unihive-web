@@ -6,7 +6,52 @@ const state = {
   programmes: [],
   qualification: '',
   region: '',
+  schools: [],
   courses: [],
+};
+
+// ── UNIVERSITIES BY REGION ──
+const UNIVERSITIES = {
+  north: [
+    'ABU Zaria', 'ATBU Bauchi', 'BUK Kano', 'FUT Minna',
+    'FUTY Yola', 'UDUS Sokoto', 'MAUTECH Yola', 'KASU Kaduna',
+    'UNIMAID', 'FUD Dutse', 'FUKashere', 'FUBK Kebbi',
+    'Nile University Abuja', 'AUN Yola', 'Nasarawa State Uni',
+    'Gombe State Uni', 'Plateau State Uni', 'Yobe State Uni',
+    'Sokoto State Uni', 'Adamawa State Uni', 'Benue State Uni',
+    'Kogi State Uni', 'FU Lokoja', 'FU Lafia', 'Bauchi State Uni',
+    'Al-Qalam University Katsina', 'Niger State Uni',
+    'Taraba State Uni', 'MAUTECH', 'NDA Kaduna',
+  ],
+  southwest: [
+    'UNILAG', 'UI Ibadan', 'OAU Ile-Ife', 'FUTA Akure',
+    'UNILORIN', 'LASU', 'Covenant University', 'Babcock University',
+    'Redeemers University', 'Bowen University', 'Lead City University',
+    'Lagos State University', 'Ekiti State University',
+    'Federal University Oye-Ekiti', 'Ondo State University',
+    'Osun State University',
+  ],
+  southeast: [
+    'UNN Nsukka', 'FUTO Owerri', 'ESUT Enugu', 'EBSU Abakaliki',
+    'Enugu State University', 'Imo State University',
+    'Abia State University', 'Michael Okpara University',
+    'Federal University Ndufu-Alike', 'Chukwuemeka Odumegwu Ojukwu University',
+    'Renaissance University', 'Caritas University',
+  ],
+  southsouth: [
+    'UNIPORT', 'UNIBEN', 'Rivers State University',
+    'DELSU', 'Niger Delta University', 'Ambrose Alli University',
+    'Cross River University', 'University of Uyo',
+    'Federal University Otuoke', 'Federal University Wukari',
+    'Novena University', 'Igbinedion University',
+  ],
+  any: [
+    'ABU Zaria', 'UNILAG', 'UI Ibadan', 'OAU Ile-Ife',
+    'UNN Nsukka', 'UNIPORT', 'UNIBEN', 'UNILORIN',
+    'BUK Kano', 'ATBU Bauchi', 'FUT Minna', 'FUTA Akure',
+    'NOUN', 'Covenant University', 'Babcock University',
+    'FUTO Owerri', 'Rivers State University', 'DELSU',
+  ],
 };
 
 // ── NAVIGATION ──
@@ -79,12 +124,12 @@ function validate(step) {
     }
   }
 
-  if (step === 4) {
-    if (!state.region) {
-      showError('regionError', 'Please select your preferred region');
-      valid = false;
-    }
+if (step === 4) {
+  if (!state.region) {
+    showError('regionError', 'Please select your preferred region');
+    valid = false;
   }
+}
 
   if (step === 5) {
     if (state.courses.length === 0) {
@@ -138,6 +183,44 @@ function selectSingle(card, group) {
 
   if (group === 'qual') state.qualification = card.dataset.value;
   if (group === 'region') state.region = card.dataset.value;
+}
+
+function selectRegion(card) {
+  // Select the region card
+  const parent = card.parentElement;
+  parent.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
+  card.classList.add('selected');
+  state.region = card.dataset.value;
+  state.schools = [];
+
+  // Build school tags for selected region
+  const wrap = document.getElementById('schoolsWrap');
+  const tagsContainer = document.getElementById('schoolTags');
+  const schools = UNIVERSITIES[state.region] || [];
+
+  tagsContainer.innerHTML = schools.map(school => `
+    <span class="course-tag school-tag"
+          data-value="${school}"
+          onclick="toggleSchool(this)">
+      ${school}
+    </span>
+  `).join('');
+
+  // Slide in schools
+  wrap.style.display = 'block';
+  wrap.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+function toggleSchool(tag) {
+  tag.classList.toggle('selected');
+  const value = tag.dataset.value;
+  if (!state.schools) state.schools = [];
+
+  if (tag.classList.contains('selected')) {
+    if (!state.schools.includes(value)) state.schools.push(value);
+  } else {
+    state.schools = state.schools.filter(v => v !== value);
+  }
 }
 
 // ── COURSE TAGS ──
@@ -227,6 +310,10 @@ function showConfirmation() {
       <span class="confirm-row-value">${region}</span>
     </div>
     <div class="confirm-row">
+  <span class="confirm-row-label">Universities</span>
+  <span class="confirm-row-value">${state.schools.length > 0 ? state.schools.join(', ') : 'All in selected region'}</span>
+</div>
+    <div class="confirm-row">
       <span class="confirm-row-label">Courses</span>
       <span class="confirm-row-value">${coursesText || 'None selected'}</span>
     </div>
@@ -242,18 +329,26 @@ function showConfirmation() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 
   // Save to localStorage for now
-  localStorage.setItem('unihive_user', JSON.stringify({
-    name: state.firstName,
-    email: state.email,
-    programmes: state.programmes,
-    qualification: state.qualification,
-    region: state.region,
-    courses: state.courses,
-    signedUp: new Date().toISOString(),
-  }));
+localStorage.setItem('unihive_user', JSON.stringify({
+  name: state.firstName,
+  email: state.email,
+  programmes: state.programmes,
+  qualification: state.qualification,
+  region: state.region,
+  schools: state.schools,
+  courses: state.courses,
+  signedUp: new Date().toISOString(),
+}));
 }
 
 // ── INIT ──
 document.addEventListener('DOMContentLoaded', () => {
   updateProgress(1);
+
+  // Pre-fill email from landing page
+  const params = new URLSearchParams(window.location.search);
+  const email = params.get('email');
+  if (email) {
+    document.getElementById('email').value = email;
+  }
 });

@@ -536,6 +536,57 @@ body {
 
 .btn-home:hover { opacity: 0.9; transform: translateY(-1px); }
 
+/* ── SCHOOLS ── */
+.schools-wrap {
+  margin-top: 24px;
+  animation: fadeIn 0.3s ease;
+}
+
+.schools-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.schools-divider::before,
+.schools-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+.schools-divider span {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--green);
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+  text-transform: uppercase;
+}
+
+.schools-sub {
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 14px;
+  line-height: 1.5;
+}
+
+.school-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.schools-note {
+  font-size: 12px;
+  color: var(--muted);
+  font-style: italic;
+  line-height: 1.5;
+}
+
 /* ── RESPONSIVE ── */
 @media (max-width: 640px) {
   .onboard-main { padding: 24px 5% 60px; }

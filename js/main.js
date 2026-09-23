@@ -47,8 +47,10 @@ function toggleFaq(btn) {
 function handleSignup(e) {
   e.preventDefault();
   const input = e.target.querySelector('input[type="email"]');
-  const btn = e.target.querySelector('button');
-  const email = input.value;
+  const email = input.value.trim();
+  if (email) {
+    window.location.href = `onboard.html?email=${encodeURIComponent(email)}`;
+  }
 
   const emails = JSON.parse(localStorage.getItem('unihive_signups') || '[]');
   if (!emails.includes(email)) {
