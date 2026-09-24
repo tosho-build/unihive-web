@@ -1,0 +1,204 @@
+{
+  "north": {
+    "label": "Northern Nigeria",
+    "subregions": {
+      "northwest": {
+        "label": "North-West",
+        "schools": [
+          { "name": "Ahmadu Bello University", "short": "ABU Zaria", "state": "Kaduna", "type": "federal" },
+          { "name": "Bayero University Kano", "short": "BUK Kano", "state": "Kano", "type": "federal" },
+          { "name": "Usmanu Danfodiyo University", "short": "UDUS Sokoto", "state": "Sokoto", "type": "federal" },
+          { "name": "Federal University Dutse", "short": "FUD Dutse", "state": "Jigawa", "type": "federal" },
+          { "name": "Federal University Birnin Kebbi", "short": "FUBK", "state": "Kebbi", "type": "federal" },
+          { "name": "Federal University Gusau", "short": "FUG Gusau", "state": "Zamfara", "type": "federal" },
+          { "name": "Kaduna State University", "short": "KASU Kaduna", "state": "Kaduna", "type": "state" },
+          { "name": "Kano State University of Science and Technology", "short": "KUST Wudil", "state": "Kano", "type": "state" },
+          { "name": "Sokoto State University", "short": "SSU Sokoto", "state": "Sokoto", "type": "state" },
+          { "name": "Kebbi State University", "short": "KSUSTA", "state": "Kebbi", "type": "state" },
+          { "name": "Zamfara State University", "short": "ZSU", "state": "Zamfara", "type": "state" },
+          { "name": "Al-Qalam University Katsina", "short": "AUK", "state": "Katsina", "type": "private" },
+          { "name": "Katsina State University", "short": "KSU Katsina", "state": "Katsina", "type": "state" },
+          { "name": "Northwest University Kano", "short": "NWU Kano", "state": "Kano", "type": "private" }
+        ]
+      },
+      "northeast": {
+        "label": "North-East",
+        "schools": [
+          { "name": "Abubakar Tafawa Balewa University", "short": "ATBU Bauchi", "state": "Bauchi", "type": "federal" },
+          { "name": "University of Maiduguri", "short": "UNIMAID", "state": "Borno", "type": "federal" },
+          { "name": "Modibbo Adama University", "short": "MAUTECH Yola", "state": "Adamawa", "type": "federal" },
+          { "name": "Federal University Kashere", "short": "FUKashere", "state": "Gombe", "type": "federal" },
+          { "name": "Federal University Wukari", "short": "FUW Wukari", "state": "Taraba", "type": "federal" },
+          { "name": "Federal University of Technology Yola", "short": "FUTY Yola", "state": "Adamawa", "type": "federal" },
+          { "name": "Gombe State University", "short": "GSU Gombe", "state": "Gombe", "type": "state" },
+          { "name": "Adamawa State University", "short": "ADSU", "state": "Adamawa", "type": "state" },
+          { "name": "Taraba State University", "short": "TSU Jalingo", "state": "Taraba", "type": "state" },
+          { "name": "Yobe State University", "short": "YSU Damaturu", "state": "Yobe", "type": "state" },
+          { "name": "Bauchi State University", "short": "BASU Gadau", "state": "Bauchi", "type": "state" },
+          { "name": "University of Mkar", "short": "Mkar", "state": "Benue", "type": "private" },
+          { "name": "American University of Nigeria", "short": "AUN Yola", "state": "Adamawa", "type": "private" }
+        ]
+      },
+      "northcentral": {
+        "label": "North-Central",
+        "schools": [
+          { "name": "Federal University of Technology Minna", "short": "FUT Minna", "state": "Niger", "type": "federal" },
+          { "name": "University of Abuja", "short": "UNIABUJA", "state": "FCT", "type": "federal" },
+          { "name": "Federal University Lokoja", "short": "FULokoja", "state": "Kogi", "type": "federal" },
+          { "name": "Federal University Lafia", "short": "FULafia", "state": "Nasarawa", "type": "federal" },
+          { "name": "Nasarawa State University", "short": "NSUK Keffi", "state": "Nasarawa", "type": "state" },
+          { "name": "Plateau State University", "short": "PLASU", "state": "Plateau", "type": "state" },
+          { "name": "Benue State University", "short": "BSU Makurdi", "state": "Benue", "type": "state" },
+          { "name": "Kogi State University", "short": "KSU Anyigba", "state": "Kogi", "type": "state" },
+          { "name": "Niger State University", "short": "NSU Lafia", "state": "Niger", "type": "state" },
+          { "name": "University of Jos", "short": "UNIJOS", "state": "Plateau", "type": "federal" },
+          { "name": "Nigerian Defence Academy", "short": "NDA Kaduna", "state": "Kaduna", "type": "federal" },
+          { "name": "Nile University of Nigeria", "short": "Nile University", "state": "FCT", "type": "private" },
+          { "name": "Veritas University", "short": "Veritas", "state": "FCT", "type": "private" },
+          { "name": "Bingham University", "short": "Bingham", "state": "Nasarawa", "type": "private" },
+          { "name": "Kwararafa University", "short": "Kwararafa", "state": "Taraba", "type": "private" }
+        ]
+      }
+    }
+  },
+  "southwest": {
+    "label": "South-West",
+    "subregions": {
+      "lagos": {
+        "label": "Lagos",
+        "schools": [
+          { "name": "University of Lagos", "short": "UNILAG", "state": "Lagos", "type": "federal" },
+          { "name": "Lagos State University", "short": "LASU", "state": "Lagos", "type": "state" },
+          { "name": "Yaba College of Technology", "short": "YABATECH", "state": "Lagos", "type": "federal" },
+          { "name": "Covenant University", "short": "Covenant University", "state": "Ogun", "type": "private" },
+          { "name": "Babcock University", "short": "Babcock", "state": "Ogun", "type": "private" },
+          { "name": "Crawford University", "short": "Crawford", "state": "Ogun", "type": "private" },
+          { "name": "Olabisi Onabanjo University", "short": "OOU", "state": "Ogun", "type": "state" },
+          { "name": "Federal University of Agriculture Abeokuta", "short": "FUNAAB", "state": "Ogun", "type": "federal" }
+        ]
+      },
+      "ibadan": {
+        "label": "Oyo & Osun",
+        "schools": [
+          { "name": "University of Ibadan", "short": "UI Ibadan", "state": "Oyo", "type": "federal" },
+          { "name": "Obafemi Awolowo University", "short": "OAU Ile-Ife", "state": "Osun", "type": "federal" },
+          { "name": "Ladoke Akintola University", "short": "LAUTECH", "state": "Oyo", "type": "state" },
+          { "name": "Osun State University", "short": "UNIOSUN", "state": "Osun", "type": "state" },
+          { "name": "Lead City University", "short": "Lead City", "state": "Oyo", "type": "private" },
+          { "name": "Bowen University", "short": "Bowen", "state": "Osun", "type": "private" },
+          { "name": "Redeemers University", "short": "Redeemers", "state": "Osun", "type": "private" }
+        ]
+      },
+      "others_sw": {
+        "label": "Ekiti, Ondo & Kwara",
+        "schools": [
+          { "name": "University of Ilorin", "short": "UNILORIN", "state": "Kwara", "type": "federal" },
+          { "name": "Federal University of Technology Akure", "short": "FUTA Akure", "state": "Ondo", "type": "federal" },
+          { "name": "Ekiti State University", "short": "EKSU", "state": "Ekiti", "type": "state" },
+          { "name": "Federal University Oye-Ekiti", "short": "FUOYE", "state": "Ekiti", "type": "federal" },
+          { "name": "Ondo State University of Science and Technology", "short": "OSUSTECH", "state": "Ondo", "type": "state" },
+          { "name": "Kwara State University", "short": "KWASU", "state": "Kwara", "type": "state" },
+          { "name": "Fountain University", "short": "Fountain", "state": "Osun", "type": "private" }
+        ]
+      }
+    }
+  },
+  "southeast": {
+    "label": "South-East",
+    "subregions": {
+      "enugu_anambra": {
+        "label": "Enugu & Anambra",
+        "schools": [
+          { "name": "University of Nigeria Nsukka", "short": "UNN Nsukka", "state": "Enugu", "type": "federal" },
+          { "name": "Enugu State University of Science and Technology", "short": "ESUT Enugu", "state": "Enugu", "type": "state" },
+          { "name": "Nnamdi Azikiwe University", "short": "UNIZIK Awka", "state": "Anambra", "type": "federal" },
+          { "name": "Chukwuemeka Odumegwu Ojukwu University", "short": "COOU", "state": "Anambra", "type": "state" },
+          { "name": "Caritas University", "short": "Caritas", "state": "Enugu", "type": "private" },
+          { "name": "Renaissance University", "short": "Renaissance", "state": "Enugu", "type": "private" },
+          { "name": "Paul University", "short": "Paul University", "state": "Anambra", "type": "private" }
+        ]
+      },
+      "imo_abia": {
+        "label": "Imo & Abia",
+        "schools": [
+          { "name": "Federal University of Technology Owerri", "short": "FUTO Owerri", "state": "Imo", "type": "federal" },
+          { "name": "Imo State University", "short": "IMSU", "state": "Imo", "type": "state" },
+          { "name": "Abia State University", "short": "ABSU Uturu", "state": "Abia", "type": "state" },
+          { "name": "Michael Okpara University of Agriculture", "short": "MOUAU", "state": "Abia", "type": "federal" },
+          { "name": "Gregory University", "short": "Gregory", "state": "Abia", "type": "private" },
+          { "name": "Rhema University", "short": "Rhema", "state": "Abia", "type": "private" }
+        ]
+      },
+      "ebonyi": {
+        "label": "Ebonyi",
+        "schools": [
+          { "name": "Ebonyi State University", "short": "EBSU Abakaliki", "state": "Ebonyi", "type": "state" },
+          { "name": "Federal University Ndufu-Alike", "short": "FUNAI", "state": "Ebonyi", "type": "federal" },
+          { "name": "David Umahi Federal University of Health Sciences", "short": "DUFUHS", "state": "Ebonyi", "type": "federal" }
+        ]
+      }
+    }
+  },
+  "southsouth": {
+    "label": "South-South",
+    "subregions": {
+      "rivers_bayelsa": {
+        "label": "Rivers & Bayelsa",
+        "schools": [
+          { "name": "University of Port Harcourt", "short": "UNIPORT", "state": "Rivers", "type": "federal" },
+          { "name": "Rivers State University", "short": "RSU", "state": "Rivers", "type": "state" },
+          { "name": "Niger Delta University", "short": "NDU", "state": "Bayelsa", "type": "state" },
+          { "name": "Federal University Otuoke", "short": "FUO Otuoke", "state": "Bayelsa", "type": "federal" },
+          { "name": "Ignatius Ajuru University", "short": "IAUE", "state": "Rivers", "type": "state" },
+          { "name": "Captain Elechi Amadi Polytechnic", "short": "ELECHI", "state": "Rivers", "type": "state" }
+        ]
+      },
+      "edo_delta": {
+        "label": "Edo & Delta",
+        "schools": [
+          { "name": "University of Benin", "short": "UNIBEN", "state": "Edo", "type": "federal" },
+          { "name": "Ambrose Alli University", "short": "AAU Ekpoma", "state": "Edo", "type": "state" },
+          { "name": "Delta State University", "short": "DELSU", "state": "Delta", "type": "state" },
+          { "name": "Federal University of Petroleum Resources", "short": "FUPRE", "state": "Delta", "type": "federal" },
+          { "name": "Igbinedion University", "short": "IUO", "state": "Edo", "type": "private" },
+          { "name": "Novena University", "short": "Novena", "state": "Delta", "type": "private" },
+          { "name": "Western Delta University", "short": "WDU", "state": "Delta", "type": "private" }
+        ]
+      },
+      "akwa_crossriver": {
+        "label": "Akwa Ibom & Cross River",
+        "schools": [
+          { "name": "University of Uyo", "short": "UNIUYO", "state": "Akwa Ibom", "type": "federal" },
+          { "name": "University of Calabar", "short": "UNICAL", "state": "Cross River", "type": "federal" },
+          { "name": "Akwa Ibom State University", "short": "AKSU", "state": "Akwa Ibom", "type": "state" },
+          { "name": "Cross River University of Technology", "short": "CRUTECH", "state": "Cross River", "type": "state" },
+          { "name": "Topfaith University", "short": "Topfaith", "state": "Akwa Ibom", "type": "private" },
+          { "name": "Arthur Jarvis University", "short": "AJU", "state": "Cross River", "type": "private" }
+        ]
+      }
+    }
+  },
+  "any": {
+    "label": "Open to any region",
+    "featured": [
+      { "name": "Ahmadu Bello University", "short": "ABU Zaria", "state": "Kaduna", "type": "federal" },
+      { "name": "University of Lagos", "short": "UNILAG", "state": "Lagos", "type": "federal" },
+      { "name": "University of Ibadan", "short": "UI Ibadan", "state": "Oyo", "type": "federal" },
+      { "name": "Obafemi Awolowo University", "short": "OAU Ile-Ife", "state": "Osun", "type": "federal" },
+      { "name": "University of Nigeria Nsukka", "short": "UNN Nsukka", "state": "Enugu", "type": "federal" },
+      { "name": "University of Port Harcourt", "short": "UNIPORT", "state": "Rivers", "type": "federal" },
+      { "name": "University of Benin", "short": "UNIBEN", "state": "Edo", "type": "federal" },
+      { "name": "University of Ilorin", "short": "UNILORIN", "state": "Kwara", "type": "federal" },
+      { "name": "Bayero University Kano", "short": "BUK Kano", "state": "Kano", "type": "federal" },
+      { "name": "Abubakar Tafawa Balewa University", "short": "ATBU Bauchi", "state": "Bauchi", "type": "federal" },
+      { "name": "Federal University of Technology Minna", "short": "FUT Minna", "state": "Niger", "type": "federal" },
+      { "name": "Federal University of Technology Akure", "short": "FUTA Akure", "state": "Ondo", "type": "federal" },
+      { "name": "Federal University of Technology Owerri", "short": "FUTO Owerri", "state": "Imo", "type": "federal" },
+      { "name": "Covenant University", "short": "Covenant", "state": "Ogun", "type": "private" },
+      { "name": "Babcock University", "short": "Babcock", "state": "Ogun", "type": "private" },
+      { "name": "National Open University of Nigeria", "short": "NOUN", "state": "Nationwide", "type": "federal" },
+      { "name": "Nile University of Nigeria", "short": "Nile University", "state": "FCT", "type": "private" },
+      { "name": "American University of Nigeria", "short": "AUN Yola", "state": "Adamawa", "type": "private" }
+    ]
+  }
+}

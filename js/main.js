@@ -47,29 +47,33 @@ function toggleFaq(btn) {
 function handleSignup(e) {
   e.preventDefault();
   const input = e.target.querySelector('input[type="email"]');
+  const btn = e.target.querySelector('button');
   const email = input.value.trim();
-  if (email) {
-    window.location.href = `onboard.html?email=${encodeURIComponent(email)}`;
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  // Remove any existing error
+  const existing = e.target.querySelector('.inline-error');
+  if (existing) existing.remove();
+
+  // Validate
+  if (!email || !emailRegex.test(email)) {
+    input.style.borderColor = '#DC2626';
+    input.placeholder = 'Please enter a valid email address';
+    input.style.color = '#DC2626';
+    input.value = '';
+    setTimeout(() => {
+      input.style.borderColor = '';
+      input.style.color = '';
+      input.placeholder = e.target.classList.contains('cta-form')
+        ? 'Your email address'
+        : 'Enter your email address';
+    }, 3000);
+    input.focus();
+    return;
   }
 
-  const emails = JSON.parse(localStorage.getItem('unihive_signups') || '[]');
-  if (!emails.includes(email)) {
-    emails.push(email);
-    localStorage.setItem('unihive_signups', JSON.stringify(emails));
-  }
-
-  btn.textContent = "You're on the list!";
-  btn.style.background = '#16A34A';
-  btn.style.color = 'white';
-  input.value = '';
-  input.placeholder = "We'll be in touch soon";
-
-  setTimeout(() => {
-    btn.textContent = 'Join the Hive';
-    btn.style.background = '';
-    btn.style.color = '';
-    input.placeholder = 'Enter your email address';
-  }, 4000);
+  // Redirect to onboard with email pre-filled
+  window.location.href = `./onboard.html?email=${encodeURIComponent(email)}`;
 }
 
 // ── SMOOTH SCROLL ──

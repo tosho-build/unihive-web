@@ -587,6 +587,43 @@ body {
   line-height: 1.5;
 }
 
+/* ── CUSTOM COURSE ── */
+.custom-course-add {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 100px;
+  border: 1.5px dashed var(--green);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--green);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.custom-course-add:hover {
+  background: rgba(27,67,50,0.05);
+}
+
+.custom-added {
+  font-size: 13px;
+  color: var(--success);
+  font-weight: 500;
+}
+
+/* ── SCHOOL TAG WITH STATE ── */
+.school-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.school-tag small {
+  font-size: 10px;
+  opacity: 0.65;
+}
+
 /* ── RESPONSIVE ── */
 @media (max-width: 640px) {
   .onboard-main { padding: 24px 5% 60px; }

@@ -10,49 +10,171 @@ const state = {
   courses: [],
 };
 
-// ── UNIVERSITIES BY REGION ──
-const UNIVERSITIES = {
-  north: [
-    'ABU Zaria', 'ATBU Bauchi', 'BUK Kano', 'FUT Minna',
-    'FUTY Yola', 'UDUS Sokoto', 'MAUTECH Yola', 'KASU Kaduna',
-    'UNIMAID', 'FUD Dutse', 'FUKashere', 'FUBK Kebbi',
-    'Nile University Abuja', 'AUN Yola', 'Nasarawa State Uni',
-    'Gombe State Uni', 'Plateau State Uni', 'Yobe State Uni',
-    'Sokoto State Uni', 'Adamawa State Uni', 'Benue State Uni',
-    'Kogi State Uni', 'FU Lokoja', 'FU Lafia', 'Bauchi State Uni',
-    'Al-Qalam University Katsina', 'Niger State Uni',
-    'Taraba State Uni', 'MAUTECH', 'NDA Kaduna',
-  ],
-  southwest: [
-    'UNILAG', 'UI Ibadan', 'OAU Ile-Ife', 'FUTA Akure',
-    'UNILORIN', 'LASU', 'Covenant University', 'Babcock University',
-    'Redeemers University', 'Bowen University', 'Lead City University',
-    'Lagos State University', 'Ekiti State University',
-    'Federal University Oye-Ekiti', 'Ondo State University',
-    'Osun State University',
-  ],
-  southeast: [
-    'UNN Nsukka', 'FUTO Owerri', 'ESUT Enugu', 'EBSU Abakaliki',
-    'Enugu State University', 'Imo State University',
-    'Abia State University', 'Michael Okpara University',
-    'Federal University Ndufu-Alike', 'Chukwuemeka Odumegwu Ojukwu University',
-    'Renaissance University', 'Caritas University',
-  ],
-  southsouth: [
-    'UNIPORT', 'UNIBEN', 'Rivers State University',
-    'DELSU', 'Niger Delta University', 'Ambrose Alli University',
-    'Cross River University', 'University of Uyo',
-    'Federal University Otuoke', 'Federal University Wukari',
-    'Novena University', 'Igbinedion University',
-  ],
-  any: [
-    'ABU Zaria', 'UNILAG', 'UI Ibadan', 'OAU Ile-Ife',
-    'UNN Nsukka', 'UNIPORT', 'UNIBEN', 'UNILORIN',
-    'BUK Kano', 'ATBU Bauchi', 'FUT Minna', 'FUTA Akure',
-    'NOUN', 'Covenant University', 'Babcock University',
-    'FUTO Owerri', 'Rivers State University', 'DELSU',
-  ],
-};
+// ── UNIVERSITIES ──
+let allUniversities = {};
+
+async function loadUniversities() {
+  try {
+    const res = await fetch('data/universities.json');
+    allUniversities = await res.json();
+  } catch (e) {
+    console.error('Could not load universities:', e);
+  }
+}
+
+function selectRegion(card) {
+  const parent = card.parentElement;
+  parent.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
+  card.classList.add('selected');
+  state.region = card.dataset.value;
+  state.schools = [];
+
+  const regionData = allUniversities[state.region];
+  if (!regionData) return;
+
+  let schools = [];
+  if (state.region === 'any') {
+    schools = regionData.featured;
+  } else {
+    Object.values(regionData.subregions).forEach(sub => {
+      schools = schools.concat(sub.schools);
+    });
+  }
+
+  const wrap = document.getElementById('schoolsWrap');
+  const tagsContainer = document.getElementById('schoolTags');
+  const searchBox = document.getElementById('schoolSearch');
+
+  tagsContainer.innerHTML = schools.map(s => `
+    <span class="course-tag school-tag"
+          data-value="${s.short}"
+          data-fullname="${s.name}"
+          data-state="${s.state}"
+          data-type="${s.type}"
+          onclick="toggleSchool(this)">
+      ${s.short} <small>${s.state}</small>
+    </span>
+  `).join('');
+
+  if (searchBox) {
+    searchBox.value = '';
+    searchBox.oninput = () => filterSchools(searchBox.value, schools);
+  }
+
+  wrap.style.display = 'block';
+  wrap.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+function filterSchools(query, allSchools) {
+  const q = query.toLowerCase().trim();
+  const tagsContainer = document.getElementById('schoolTags');
+  if (!q) {
+    tagsContainer.querySelectorAll('.school-tag').forEach(t => t.style.display = 'inline-flex');
+    return;
+  }
+  tagsContainer.querySelectorAll('.school-tag').forEach(tag => {
+    const name = (tag.dataset.fullname || '').toLowerCase();
+    const short = (tag.dataset.value || '').toLowerCase();
+    const st = (tag.dataset.state || '').toLowerCase();
+    tag.style.display = (name.includes(q) || short.includes(q) || st.includes(q)) ? 'inline-flex' : 'none';
+  });
+}
+
+function toggleSchool(tag) {
+  tag.classList.toggle('selected');
+  const value = tag.dataset.value;
+  if (!state.schools) state.schools = [];
+  if (tag.classList.contains('selected')) {
+    if (!state.schools.includes(value)) state.schools.push(value);
+  } else {
+    state.schools = state.schools.filter(v => v !== value);
+  }
+}
+
+// ── COURSES ──
+let allCourses = [];
+let featuredCourses = [];
+
+async function loadCourses() {
+  try {
+    const res = await fetch('data/courses.json');
+    const data = await res.json();
+    allCourses = data.all;
+    featuredCourses = data.featured;
+    renderCourseTags(featuredCourses);
+  } catch (e) {
+    console.error('Could not load courses:', e);
+  }
+}
+
+function renderCourseTags(courses) {
+  const container = document.getElementById('courseTags');
+  if (!container) return;
+  container.innerHTML = courses.map(course => `
+    <span class="course-tag ${state.courses.includes(course) ? 'selected' : ''}"
+          data-value="${course}"
+          onclick="toggleCourse(this)">
+      ${course}
+    </span>
+  `).join('');
+}
+
+function filterCourses(query) {
+  const q = query.toLowerCase().trim();
+  if (!q) {
+    renderCourseTags(featuredCourses);
+    document.getElementById('customCourseWrap').style.display = 'none';
+    return;
+  }
+  const matches = allCourses.filter(c => c.toLowerCase().includes(q));
+  if (matches.length > 0) {
+    renderCourseTags(matches.slice(0, 20));
+    document.getElementById('customCourseWrap').style.display = 'none';
+  } else {
+    renderCourseTags([]);
+    const wrap = document.getElementById('customCourseWrap');
+    wrap.style.display = 'block';
+    document.getElementById('customCourseText').textContent = `Add "${query}" as your course`;
+    wrap.onclick = () => addCustomCourse(query);
+  }
+}
+
+function addCustomCourse(course) {
+  const formatted = course.trim();
+  if (!state.courses.includes(formatted)) {
+    state.courses.push(formatted);
+  }
+  updateCourseCount();
+  const wrap = document.getElementById('customCourseWrap');
+  wrap.innerHTML = `<span class="custom-added">✓ "${formatted}" added</span>`;
+  document.getElementById('courseSearch').value = '';
+  setTimeout(() => {
+    renderCourseTags(featuredCourses);
+    wrap.style.display = 'none';
+  }, 1500);
+}
+
+function toggleCourse(tag) {
+  tag.classList.toggle('selected');
+  const value = tag.dataset.value;
+  if (tag.classList.contains('selected')) {
+    if (!state.courses.includes(value)) state.courses.push(value);
+  } else {
+    state.courses = state.courses.filter(v => v !== value);
+  }
+  updateCourseCount();
+}
+
+function updateCourseCount() {
+  const wrap = document.getElementById('selectedCoursesWrap');
+  const count = document.getElementById('selectedCount');
+  if (state.courses.length > 0) {
+    wrap.style.display = 'block';
+    count.textContent = state.courses.length;
+  } else {
+    wrap.style.display = 'none';
+  }
+}
 
 // ── NAVIGATION ──
 function goNext(step) {
@@ -85,7 +207,6 @@ function updateProgress(current) {
     if (num < current) step.classList.add('done');
     else if (num === current) step.classList.add('active');
   });
-
   for (let i = 1; i <= 4; i++) {
     const line = document.getElementById(`line${i}`);
     if (line) line.classList.toggle('done', i < current);
@@ -100,44 +221,21 @@ function validate(step) {
   if (step === 1) {
     const name = document.getElementById('firstName').value.trim();
     const email = document.getElementById('email').value.trim();
-    if (!name) {
-      showError('firstNameError', 'Please enter your first name');
-      valid = false;
-    }
-    if (!email || !isValidEmail(email)) {
-      showError('emailError', 'Please enter a valid email address');
-      valid = false;
-    }
+    if (!name) { showError('firstNameError', 'Please enter your first name'); valid = false; }
+    if (!email || !isValidEmail(email)) { showError('emailError', 'Please enter a valid email address'); valid = false; }
   }
-
   if (step === 2) {
-    if (state.programmes.length === 0) {
-      showError('programmeError', 'Please select at least one programme');
-      valid = false;
-    }
+    if (state.programmes.length === 0) { showError('programmeError', 'Please select at least one programme'); valid = false; }
   }
-
   if (step === 3) {
-    if (!state.qualification) {
-      showError('qualError', 'Please select your qualification');
-      valid = false;
-    }
+    if (!state.qualification) { showError('qualError', 'Please select your qualification'); valid = false; }
   }
-
-if (step === 4) {
-  if (!state.region) {
-    showError('regionError', 'Please select your preferred region');
-    valid = false;
+  if (step === 4) {
+    if (!state.region) { showError('regionError', 'Please select your preferred region'); valid = false; }
   }
-}
-
   if (step === 5) {
-    if (state.courses.length === 0) {
-      showError('coursesError', 'Please select at least one course');
-      valid = false;
-    }
+    if (state.courses.length === 0) { showError('coursesError', 'Please select at least one course'); valid = false; }
   }
-
   return valid;
 }
 
@@ -166,7 +264,6 @@ function collectData(step) {
 function toggleOption(card, group) {
   card.classList.toggle('selected');
   const value = card.dataset.value;
-
   if (group === 'programme') {
     if (card.classList.contains('selected')) {
       if (!state.programmes.includes(value)) state.programmes.push(value);
@@ -180,81 +277,7 @@ function selectSingle(card, group) {
   const parent = card.parentElement;
   parent.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
   card.classList.add('selected');
-
   if (group === 'qual') state.qualification = card.dataset.value;
-  if (group === 'region') state.region = card.dataset.value;
-}
-
-function selectRegion(card) {
-  // Select the region card
-  const parent = card.parentElement;
-  parent.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
-  card.classList.add('selected');
-  state.region = card.dataset.value;
-  state.schools = [];
-
-  // Build school tags for selected region
-  const wrap = document.getElementById('schoolsWrap');
-  const tagsContainer = document.getElementById('schoolTags');
-  const schools = UNIVERSITIES[state.region] || [];
-
-  tagsContainer.innerHTML = schools.map(school => `
-    <span class="course-tag school-tag"
-          data-value="${school}"
-          onclick="toggleSchool(this)">
-      ${school}
-    </span>
-  `).join('');
-
-  // Slide in schools
-  wrap.style.display = 'block';
-  wrap.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-}
-
-function toggleSchool(tag) {
-  tag.classList.toggle('selected');
-  const value = tag.dataset.value;
-  if (!state.schools) state.schools = [];
-
-  if (tag.classList.contains('selected')) {
-    if (!state.schools.includes(value)) state.schools.push(value);
-  } else {
-    state.schools = state.schools.filter(v => v !== value);
-  }
-}
-
-// ── COURSE TAGS ──
-function toggleCourse(tag) {
-  tag.classList.toggle('selected');
-  const value = tag.dataset.value;
-
-  if (tag.classList.contains('selected')) {
-    if (!state.courses.includes(value)) state.courses.push(value);
-  } else {
-    state.courses = state.courses.filter(v => v !== value);
-  }
-
-  updateCourseCount();
-}
-
-function updateCourseCount() {
-  const wrap = document.getElementById('selectedCoursesWrap');
-  const count = document.getElementById('selectedCount');
-  if (state.courses.length > 0) {
-    wrap.style.display = 'block';
-    count.textContent = state.courses.length;
-  } else {
-    wrap.style.display = 'none';
-  }
-}
-
-function filterCourses(query) {
-  const tags = document.querySelectorAll('.course-tag');
-  const q = query.toLowerCase().trim();
-  tags.forEach(tag => {
-    const text = tag.textContent.toLowerCase();
-    tag.classList.toggle('hidden', q !== '' && !text.includes(q));
-  });
 }
 
 // ── CONFIRMATION ──
@@ -265,7 +288,6 @@ function showConfirmation() {
     pg: 'Postgraduate',
     prof: 'Professional Certificate',
   };
-
   const qualLabels = {
     waec: 'WAEC / NECO / NABTEB',
     ond: 'OND',
@@ -276,7 +298,6 @@ function showConfirmation() {
     degree: 'First Degree',
     other: 'Other',
   };
-
   const regionLabels = {
     north: 'Northern Nigeria',
     southwest: 'South-West',
@@ -289,8 +310,8 @@ function showConfirmation() {
   const qual = qualLabels[state.qualification] || state.qualification;
   const region = regionLabels[state.region] || state.region;
 
-  const courseNames = document.querySelectorAll('.course-tag.selected');
-  const coursesText = Array.from(courseNames).map(t => t.textContent).join(', ');
+  // ✅ Read directly from state — not from DOM
+  const coursesText = state.courses.join(', ');
 
   document.getElementById('confirmSummary').innerHTML = `
     <div class="confirm-row">
@@ -310,9 +331,9 @@ function showConfirmation() {
       <span class="confirm-row-value">${region}</span>
     </div>
     <div class="confirm-row">
-  <span class="confirm-row-label">Universities</span>
-  <span class="confirm-row-value">${state.schools.length > 0 ? state.schools.join(', ') : 'All in selected region'}</span>
-</div>
+      <span class="confirm-row-label">Universities</span>
+      <span class="confirm-row-value">${state.schools.length > 0 ? state.schools.join(', ') : 'All in selected region'}</span>
+    </div>
     <div class="confirm-row">
       <span class="confirm-row-label">Courses</span>
       <span class="confirm-row-value">${coursesText || 'None selected'}</span>
@@ -320,32 +341,30 @@ function showConfirmation() {
   `;
 
   document.getElementById('confirmEmail').textContent = state.email;
-
   document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
   document.querySelectorAll('.prog-step').forEach(s => s.classList.add('done'));
   document.querySelectorAll('.prog-line').forEach(l => l.classList.add('done'));
   document.getElementById('stepConfirm').classList.add('active');
-
   window.scrollTo({ top: 0, behavior: 'smooth' });
 
-  // Save to localStorage for now
-localStorage.setItem('unihive_user', JSON.stringify({
-  name: state.firstName,
-  email: state.email,
-  programmes: state.programmes,
-  qualification: state.qualification,
-  region: state.region,
-  schools: state.schools,
-  courses: state.courses,
-  signedUp: new Date().toISOString(),
-}));
+  localStorage.setItem('unihive_user', JSON.stringify({
+    name: state.firstName,
+    email: state.email,
+    programmes: state.programmes,
+    qualification: state.qualification,
+    region: state.region,
+    schools: state.schools,
+    courses: state.courses,
+    signedUp: new Date().toISOString(),
+  }));
 }
 
 // ── INIT ──
 document.addEventListener('DOMContentLoaded', () => {
   updateProgress(1);
+  loadUniversities();
+  loadCourses();
 
-  // Pre-fill email from landing page
   const params = new URLSearchParams(window.location.search);
   const email = params.get('email');
   if (email) {

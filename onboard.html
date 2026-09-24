@@ -429,12 +429,19 @@
             <!-- Schools slide in here -->
             <div class="schools-wrap" id="schoolsWrap" style="display: none">
               <div class="schools-divider">
-                <span>Now select your target universities</span>
+                <span>Select your target universities</span>
               </div>
               <p class="schools-sub">
-                Pick the specific schools you want UniHive to monitor. You can
-                select multiple.
+                Pick the specific schools you want UniHive to monitor. Search by
+                name or state.
               </p>
+              <div class="course-search-wrap" style="margin-bottom: 12px">
+                <input
+                  type="text"
+                  id="schoolSearch"
+                  placeholder="Search by school name or state..."
+                />
+              </div>
               <div class="school-tags" id="schoolTags"></div>
               <p class="schools-note">
                 Can't find your school? We monitor 50+ universities — yours is
@@ -469,217 +476,21 @@
                 oninput="filterCourses(this.value)"
               />
             </div>
-            <div class="course-tags" id="courseTags">
-              <span
-                class="course-tag"
-                data-value="computer-science"
-                onclick="toggleCourse(this)"
-                >Computer Science</span
-              >
-              <span
-                class="course-tag"
-                data-value="computer-engineering"
-                onclick="toggleCourse(this)"
-                >Computer Engineering</span
-              >
-              <span
-                class="course-tag"
-                data-value="cybersecurity"
-                onclick="toggleCourse(this)"
-                >Cybersecurity</span
-              >
-              <span
-                class="course-tag"
-                data-value="information-technology"
-                onclick="toggleCourse(this)"
-                >Information Technology</span
-              >
-              <span
-                class="course-tag"
-                data-value="software-engineering"
-                onclick="toggleCourse(this)"
-                >Software Engineering</span
-              >
-              <span
-                class="course-tag"
-                data-value="electrical-engineering"
-                onclick="toggleCourse(this)"
-                >Electrical Engineering</span
-              >
-              <span
-                class="course-tag"
-                data-value="mechanical-engineering"
-                onclick="toggleCourse(this)"
-                >Mechanical Engineering</span
-              >
-              <span
-                class="course-tag"
-                data-value="civil-engineering"
-                onclick="toggleCourse(this)"
-                >Civil Engineering</span
-              >
-              <span
-                class="course-tag"
-                data-value="medicine"
-                onclick="toggleCourse(this)"
-                >Medicine & Surgery</span
-              >
-              <span
-                class="course-tag"
-                data-value="pharmacy"
-                onclick="toggleCourse(this)"
-                >Pharmacy</span
-              >
-              <span
-                class="course-tag"
-                data-value="nursing"
-                onclick="toggleCourse(this)"
-                >Nursing</span
-              >
-              <span
-                class="course-tag"
-                data-value="law"
-                onclick="toggleCourse(this)"
-                >Law</span
-              >
-              <span
-                class="course-tag"
-                data-value="accounting"
-                onclick="toggleCourse(this)"
-                >Accounting</span
-              >
-              <span
-                class="course-tag"
-                data-value="economics"
-                onclick="toggleCourse(this)"
-                >Economics</span
-              >
-              <span
-                class="course-tag"
-                data-value="business-admin"
-                onclick="toggleCourse(this)"
-                >Business Administration</span
-              >
-              <span
-                class="course-tag"
-                data-value="mass-comm"
-                onclick="toggleCourse(this)"
-                >Mass Communication</span
-              >
-              <span
-                class="course-tag"
-                data-value="architecture"
-                onclick="toggleCourse(this)"
-                >Architecture</span
-              >
-              <span
-                class="course-tag"
-                data-value="education"
-                onclick="toggleCourse(this)"
-                >Education</span
-              >
-              <span
-                class="course-tag"
-                data-value="agriculture"
-                onclick="toggleCourse(this)"
-                >Agriculture</span
-              >
-              <span
-                class="course-tag"
-                data-value="geology"
-                onclick="toggleCourse(this)"
-                >Geology</span
-              >
-              <span
-                class="course-tag"
-                data-value="biochemistry"
-                onclick="toggleCourse(this)"
-                >Biochemistry</span
-              >
-              <span
-                class="course-tag"
-                data-value="microbiology"
-                onclick="toggleCourse(this)"
-                >Microbiology</span
-              >
-              <span
-                class="course-tag"
-                data-value="physics"
-                onclick="toggleCourse(this)"
-                >Physics</span
-              >
-              <span
-                class="course-tag"
-                data-value="mathematics"
-                onclick="toggleCourse(this)"
-                >Mathematics</span
-              >
-              <span
-                class="course-tag"
-                data-value="statistics"
-                onclick="toggleCourse(this)"
-                >Statistics</span
-              >
-              <span
-                class="course-tag"
-                data-value="political-science"
-                onclick="toggleCourse(this)"
-                >Political Science</span
-              >
-              <span
-                class="course-tag"
-                data-value="sociology"
-                onclick="toggleCourse(this)"
-                >Sociology</span
-              >
-              <span
-                class="course-tag"
-                data-value="english"
-                onclick="toggleCourse(this)"
-                >English & Literature</span
-              >
-              <span
-                class="course-tag"
-                data-value="history"
-                onclick="toggleCourse(this)"
-                >History</span
-              >
-              <span
-                class="course-tag"
-                data-value="finance"
-                onclick="toggleCourse(this)"
-                >Finance</span
-              >
-              <span
-                class="course-tag"
-                data-value="banking"
-                onclick="toggleCourse(this)"
-                >Banking & Finance</span
-              >
-              <span
-                class="course-tag"
-                data-value="public-admin"
-                onclick="toggleCourse(this)"
-                >Public Administration</span
-              >
-              <span
-                class="course-tag"
-                data-value="environmental"
-                onclick="toggleCourse(this)"
-                >Environmental Science</span
-              >
-              <span
-                class="course-tag"
-                data-value="food-tech"
-                onclick="toggleCourse(this)"
-                >Food Technology</span
-              >
-              <span
-                class="course-tag"
-                data-value="chemical-engineering"
-                onclick="toggleCourse(this)"
-                >Chemical Engineering</span
-              >
+            <div class="course-tags" id="courseTags"></div>
+            <div
+              id="customCourseWrap"
+              style="display: none; margin-bottom: 10px"
+            >
+              <span class="custom-course-add" id="customCourseText"></span>
+            </div>
+            <div
+              class="selected-courses-wrap"
+              id="selectedCoursesWrap"
+              style="display: none"
+            >
+              <p class="selected-label">
+                Selected: <span id="selectedCount">0</span> course(s)
+              </p>
             </div>
             <div
               class="selected-courses-wrap"
