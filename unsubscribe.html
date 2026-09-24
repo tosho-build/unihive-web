@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unsubscribe — UniHive</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <meta name="theme-color" content="#1B4332">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #F9FAFB;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .card {
+      background: #fff;
+      border-radius: 16px;
+      border: 1px solid #E5E7EB;
+      padding: 48px 40px;
+      max-width: 480px;
+      width: 100%;
+      text-align: center;
+    }
+    .icon { font-size: 56px; margin-bottom: 20px; }
+    h1 { font-size: 26px; font-weight: 700; color: #1B4332; margin-bottom: 10px; }
+    p { font-size: 15px; color: #6B7280; line-height: 1.7; margin-bottom: 24px; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 28px;
+      background: #1B4332;
+      color: #fff;
+      border-radius: 10px;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 700;
+      transition: opacity 0.2s;
+      margin: 6px;
+    }
+    .btn:hover { opacity: 0.9; }
+    .btn-outline {
+      background: transparent;
+      color: #1B4332;
+      border: 2px solid #1B4332;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 32px;
+      text-decoration: none;
+    }
+    .logo svg { width: 32px; height: 32px; }
+    .logo-text { font-size: 18px; font-weight: 700; }
+    .logo-text span:first-child { color: #1B4332; }
+    .logo-text span:last-child { color: #F59E0B; }
+  </style>
+</head>
+<body>
+
+  <a href="index.html" class="logo">
+    <svg viewBox="0 0 38 38" fill="none">
+      <rect width="38" height="38" rx="9" fill="#1B4332"/>
+      <polygon points="19,8 27,12.5 27,21.5 19,26 11,21.5 11,12.5" fill="#F59E0B"/>
+      <rect x="10" y="5" width="18" height="4" rx="1.5" fill="white"/>
+      <rect x="15" y="2" width="8" height="5" rx="1.5" fill="#F59E0B"/>
+      <circle cx="19" cy="17" r="3" fill="#1B4332"/>
+    </svg>
+    <span class="logo-text"><span>Uni</span><span>Hive</span></span>
+  </a>
+
+  <!-- Loading -->
+  <div class="card" id="loading">
+    <div class="icon">⏳</div>
+    <h1>Processing...</h1>
+    <p>Please wait a moment.</p>
+  </div>
+
+  <!-- Success -->
+  <div class="card" id="success" style="display:none;">
+    <div class="icon">👋</div>
+    <h1>You've been unsubscribed</h1>
+    <p>
+      Sorry to see you go, <strong id="userName"></strong>.
+      You won't receive any more alerts from UniHive.
+      You can always sign up again if you change your mind.
+    </p>
+    <a href="onboard.html" class="btn btn-outline">Sign up again</a>
+    <a href="index.html" class="btn">Back to UniHive</a>
+  </div>
+
+  <!-- Error -->
+  <div class="card" id="error" style="display:none;">
+    <div class="icon">❌</div>
+    <h1>Invalid link</h1>
+    <p>This unsubscribe link is invalid or has already been used.</p>
+    <a href="index.html" class="btn">Back to UniHive →</a>
+  </div>
+
+<script>
+  async function unsubscribe() {
+    const params = new URLSearchParams(window.location.search);
+    const token = params.get('token');
+
+    if (!token) {
+      show('error');
+      return;
+    }
+
+    try {
+      const res = await fetch(`https://unihive-backend-production.up.railway.app/api/unsubscribe?token=${token}`);
+      const data = await res.json();
+
+      if (res.ok) {
+        document.getElementById('userName').textContent = data.name;
+        show('success');
+      } else {
+        show('error');
+      }
+    } catch (err) {
+      show('error');
+    }
+  }
+
+  function show(id) {
+    document.getElementById('loading').style.display = 'none';
+    document.getElementById(id).style.display = 'block';
+  }
+
+  unsubscribe();
+</script>
+</body>
+</html>

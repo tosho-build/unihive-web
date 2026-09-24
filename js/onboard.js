@@ -280,6 +280,40 @@ function selectSingle(card, group) {
   if (group === 'qual') state.qualification = card.dataset.value;
 }
 
+// ── REGISTER USER ──
+async function registerUser() {
+  try {
+    const res = await fetch('https://unihive-backend-production.up.railway.app/api/register', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name: state.firstName,
+        email: state.email,
+        programmes: state.programmes,
+        qualification: state.qualification,
+        region: state.region,
+        schools: state.schools,
+        courses: state.courses,
+      }),
+    });
+
+    const data = await res.json();
+
+    if (res.ok) {
+      console.log('✅ User registered:', data.message);
+      // Update confirmation to show email was sent
+      const emailBox = document.querySelector('.confirm-email-box p');
+      if (emailBox) {
+        emailBox.innerHTML = `We've sent a confirmation link to <span style="font-weight:700;color:#111827">${state.email}</span>. Click it to activate your alerts.`;
+      }
+    } else {
+      console.error('Registration error:', data.error);
+    }
+  } catch (err) {
+    console.error('Could not reach backend:', err);
+  }
+}
+
 // ── CONFIRMATION ──
 function showConfirmation() {
   const programmeLabels = {
@@ -347,16 +381,20 @@ function showConfirmation() {
   document.getElementById('stepConfirm').classList.add('active');
   window.scrollTo({ top: 0, behavior: 'smooth' });
 
-  localStorage.setItem('unihive_user', JSON.stringify({
-    name: state.firstName,
-    email: state.email,
-    programmes: state.programmes,
-    qualification: state.qualification,
-    region: state.region,
-    schools: state.schools,
-    courses: state.courses,
-    signedUp: new Date().toISOString(),
-  }));
+// Save to localStorage as backup
+localStorage.setItem('unihive_user', JSON.stringify({
+  name: state.firstName,
+  email: state.email,
+  programmes: state.programmes,
+  qualification: state.qualification,
+  region: state.region,
+  schools: state.schools,
+  courses: state.courses,
+  signedUp: new Date().toISOString(),
+}));
+
+// Send to backend
+registerUser();
 }
 
 // ── INIT ──
