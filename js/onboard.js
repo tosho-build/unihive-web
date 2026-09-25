@@ -240,7 +240,7 @@ function validate(step) {
 }
 
 function isValidEmail(email) {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email.trim()) && !email.endsWith('.');
 }
 
 function showError(id, msg) {
@@ -288,7 +288,7 @@ async function registerUser() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         name: state.firstName,
-        email: state.email,
+        email: state.email.replace(/\.+$/, '').trim(),
         programmes: state.programmes,
         qualification: state.qualification,
         region: state.region,
