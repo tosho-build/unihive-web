@@ -94,67 +94,79 @@ window.addEventListener('scroll', () => {
 });
 
 // ── EMAIL PREVIEW CAROUSEL ──
+// These are illustrative sample alerts — matching the exact format
+// real alerts are generated in (Hi [name], WHAT'S NEW TODAY, UPDATES
+// FOR YOUR SCHOOLS, ACTION ITEMS, USEFUL LINKS). Not live data — the
+// real Programmes section above pulls that from what we actually
+// found today. Links here are only verified official school/JAMB URLs.
 const carouselData = [
   {
     label: 'Direct Entry',
-    title: 'UniHive — DE Admission Update',
-    region: 'Nationwide · Diploma & A-Level holders',
-    updates: [
-      { name: 'ABU Zaria · Portal open', info: 'OND/HND Computer Science · Lower Credit min · Fee: ₦2,000 · Deadline: Oct 30', link: 'https://www.abu.edu.ng/admissions' },
-      { name: 'ATBU Bauchi · Portal open', info: 'HND/NCE Computer Engineering, IT · JAMB min: 180 · Fee: ₦2,000', link: 'https://www.atbu.edu.ng/admissions' },
-      { name: 'BUK Kano · Portal open', info: 'OND/HND Cybersecurity, CS · Upper Credit · JAMB min: 200', link: 'https://www.buk.edu.ng/admissions' },
-    ],
+    title: 'UniHive Admission Update',
+    subtitle: 'Sample alert · Direct Entry profile',
+    greeting: 'Hi Ibrahim,',
+    whatsNew: "FUKashere's Post-UTME and Direct Entry portal is open for the 2026/2027 session. Registration is active now.",
+    schoolUpdate: 'FUKashere — Post-UTME/DE form is live. Upload your WAEC result and JAMB slip before the deadline.',
     actions: [
-      'Visit ABU portal — deadline is Oct 30, apply now',
-      'Confirm JAMB DE profile is active at jamb.gov.ng',
-      'Request your transcript from your institution',
-    ]
+      'Register on the FUKashere portal before the deadline',
+      'Upload your WAEC result to JAMB CAPS now',
+      'Keep your birth certificate ready for document upload',
+    ],
+    links: [
+      { label: 'FUKashere Portal', url: 'https://fukashere.edu.ng' },
+      { label: 'JAMB Official Portal', url: 'https://jamb.gov.ng' },
+    ],
   },
   {
     label: 'UTME / Post-UTME',
-    title: 'UniHive — Post-UTME Update',
-    region: 'Nationwide · All universities',
-    updates: [
-      { name: 'UNILORIN · Post-UTME open', info: 'Cut-off: 200 · Screening ongoing · Fee: ₦2,500', link: 'https://www.unilorin.edu.ng/admissions' },
-      { name: 'Nasarawa State Uni · Forms out', info: 'Registration open · All courses · Deadline: Nov 15', link: 'https://www.nsuk.edu.ng/admissions' },
-      { name: 'OAU Ile-Ife · Supplementary', info: 'Second batch admission still open · Selected courses', link: 'https://www.oauife.edu.ng/admissions' },
-    ],
+    title: 'UniHive Admission Update',
+    subtitle: 'Sample alert · UTME profile',
+    greeting: 'Hi TAJUDEEN,',
+    whatsNew: 'University of Ibadan has opened its portal for Post-UTME results and released departmental cut-off marks for 2026/2027.',
+    schoolUpdate: 'UI Ibadan — check your Post-UTME result and confirm your score meets the cut-off for your course.',
     actions: [
-      'Check UNILORIN portal for your screening date',
-      'Upload O\'Level results to JAMB CAPS immediately',
-      'Monitor your JAMB admission status on CAPS',
-    ]
+      "Check UI Ibadan's portal for your Post-UTME result",
+      'Confirm your score against the released cut-off mark',
+      'Prepare required documents for screening',
+    ],
+    links: [
+      { label: 'University of Ibadan Portal', url: 'https://ui.edu.ng' },
+      { label: 'JAMB Official Portal', url: 'https://jamb.gov.ng' },
+    ],
   },
   {
     label: 'Postgraduate',
-    title: 'UniHive — PG Admission Update',
-    region: 'Nationwide · All universities · PG focus',
-    updates: [
-      { name: 'ABU Zaria · MSc CS open', info: 'Min: Second Class Lower · Application fee: ₦10,000', link: 'https://www.abu.edu.ng/pg-admissions' },
-      { name: 'UI Ibadan · MBA intake', info: '2026/2027 session · Full & part-time · Closing soon', link: 'https://www.ui.edu.ng/pg-admissions' },
-      { name: 'UNN · PhD Engineering', info: 'Research positions available · Supervisor matching open', link: 'https://www.unn.edu.ng/pg-admissions' },
-    ],
+    title: 'UniHive Admission Update',
+    subtitle: 'Sample alert · Postgraduate profile',
+    greeting: 'Hi Ibrahim,',
+    whatsNew: 'Obafemi Awolowo University has commenced Direct Entry and postgraduate registration for the 2026/2027 session.',
+    schoolUpdate: 'OAU Ile-Ife — registration is open. Confirm your qualifying result meets the entry requirement for your programme.',
     actions: [
-      'Submit ABU PG form before deadline closes',
-      'Contact potential supervisors at UNN this week',
-      'Prepare your statement of purpose document',
-    ]
+      'Complete your OAU registration before the deadline',
+      'Confirm your result meets the minimum requirement',
+      'Prepare your transcript and supporting documents',
+    ],
+    links: [
+      { label: 'OAU Official Portal', url: 'https://oauife.edu.ng' },
+      { label: 'JAMB Official Portal', url: 'https://jamb.gov.ng' },
+    ],
   },
   {
     label: 'Professional',
-    title: 'UniHive — Professional Cert Update',
-    region: 'Nationwide · All professional bodies',
-    updates: [
-      { name: 'ICAN · November Diet open', info: 'Skills level registration · Exam: November 2026', link: 'https://www.ican.org.ng' },
-      { name: 'NIM Certificate · New intake', info: 'Management certification · 6 months · Nationwide', link: 'https://www.nim.org.ng' },
-      { name: 'CIPM · Registration open', info: 'Professional HR certification · Online available', link: 'https://www.cipm.org.ng' },
-    ],
+    title: 'UniHive Admission Update',
+    subtitle: 'Sample alert · General profile',
+    greeting: 'Hi Ibrahim,',
+    whatsNew: 'No new professional certification updates matched your profile today. We check daily and will alert you the moment something opens.',
+    schoolUpdate: 'Nothing new for your tracked schools today — monitoring continues.',
     actions: [
-      'Register for ICAN November diet before window closes',
-      'Download NIM course outline and fee structure',
-      'Check CIPM online study option for flexibility',
-    ]
-  }
+      'Keep your JAMB and result documents up to date',
+      'Check back here anytime for the latest Programmes updates',
+      "You'll get a short check-in every Monday even on quiet weeks",
+    ],
+    links: [
+      { label: 'JAMB Official Portal', url: 'https://jamb.gov.ng' },
+    ],
+  },
 ];
 
 let currentSlide = 0;
@@ -171,22 +183,25 @@ function buildCarousel() {
       <div class="email-card">
         <div class="email-header">
           <h4>${slide.title}</h4>
-          <p>${dateStr} · ${slide.region}</p>
+          <p>${slide.subtitle} · ${dateStr}</p>
         </div>
         <div class="email-body">
+          <p style="margin-bottom:10px;font-weight:600;">${slide.greeting}</p>
           <div class="email-section">
-            <div class="email-section-title">Updates</div>
-            ${slide.updates.map(u => `
-              <div class="email-school">
-                <div class="email-school-name">${u.name}</div>
-                <div class="email-school-info">${u.info}</div>
-                <a href="${u.link}" target="_blank" class="school-link">Visit portal →</a>
-              </div>
-            `).join('')}
+            <div class="email-section-title">What's new today</div>
+            <p style="font-size:13px;color:#444;line-height:1.6;margin:0 0 12px;">${slide.whatsNew}</p>
+          </div>
+          <div class="email-section">
+            <div class="email-section-title">Updates for your schools</div>
+            <p style="font-size:13px;color:#444;line-height:1.6;margin:0 0 12px;">${slide.schoolUpdate}</p>
           </div>
           <div class="email-section">
             <div class="email-section-title">Action items</div>
             ${slide.actions.map(a => `<div class="email-action">${a}</div>`).join('')}
+          </div>
+          <div class="email-section">
+            <div class="email-section-title">Useful links</div>
+            ${slide.links.map(l => `<a href="${l.url}" target="_blank" rel="noopener" class="school-link" style="display:block;margin-bottom:4px;">${l.label} →</a>`).join('')}
           </div>
         </div>
       </div>
