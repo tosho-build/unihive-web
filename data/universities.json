@@ -5,8 +5,8 @@
       "northwest": {
         "label": "North-West",
         "schools": [
-          { "name": "Ahmadu Bello University", "short": "ABU Zaria", "state": "Kaduna", "type": "federal" },
-          { "name": "Bayero University Kano", "short": "BUK Kano", "state": "Kano", "type": "federal" },
+          { "name": "Ahmadu Bello University", "short": "ABU Zaria", "state": "Kaduna", "type": "federal", "url": "https://abu.edu.ng" },
+          { "name": "Bayero University Kano", "short": "BUK Kano", "state": "Kano", "type": "federal", "url": "https://buk.edu.ng" },
           { "name": "Usmanu Danfodiyo University", "short": "UDUS Sokoto", "state": "Sokoto", "type": "federal" },
           { "name": "Federal University Dutse", "short": "FUD Dutse", "state": "Jigawa", "type": "federal" },
           { "name": "Federal University Birnin Kebbi", "short": "FUBK", "state": "Kebbi", "type": "federal" },
@@ -24,10 +24,10 @@
       "northeast": {
         "label": "North-East",
         "schools": [
-          { "name": "Abubakar Tafawa Balewa University", "short": "ATBU Bauchi", "state": "Bauchi", "type": "federal" },
+          { "name": "Abubakar Tafawa Balewa University", "short": "ATBU Bauchi", "state": "Bauchi", "type": "federal", "url": "https://atbu.edu.ng" },
           { "name": "University of Maiduguri", "short": "UNIMAID", "state": "Borno", "type": "federal" },
           { "name": "Modibbo Adama University", "short": "MAUTECH Yola", "state": "Adamawa", "type": "federal" },
-          { "name": "Federal University Kashere", "short": "FUKashere", "state": "Gombe", "type": "federal" },
+          { "name": "Federal University Kashere", "short": "FUKashere", "state": "Gombe", "type": "federal", "url": "https://fukashere.edu.ng" },
           { "name": "Federal University Wukari", "short": "FUW Wukari", "state": "Taraba", "type": "federal" },
           { "name": "Federal University of Technology Yola", "short": "FUTY Yola", "state": "Adamawa", "type": "federal" },
           { "name": "Gombe State University", "short": "GSU Gombe", "state": "Gombe", "type": "state" },
@@ -42,7 +42,7 @@
       "northcentral": {
         "label": "North-Central",
         "schools": [
-          { "name": "Federal University of Technology Minna", "short": "FUT Minna", "state": "Niger", "type": "federal" },
+          { "name": "Federal University of Technology Minna", "short": "FUT Minna", "state": "Niger", "type": "federal", "url": "https://futminna.edu.ng" },
           { "name": "University of Abuja", "short": "UNIABUJA", "state": "FCT", "type": "federal" },
           { "name": "Federal University Lokoja", "short": "FULokoja", "state": "Kogi", "type": "federal" },
           { "name": "Federal University Lafia", "short": "FULafia", "state": "Nasarawa", "type": "federal" },
@@ -67,7 +67,7 @@
       "lagos": {
         "label": "Lagos",
         "schools": [
-          { "name": "University of Lagos", "short": "UNILAG", "state": "Lagos", "type": "federal" },
+          { "name": "University of Lagos", "short": "UNILAG", "state": "Lagos", "type": "federal", "url": "https://unilag.edu.ng" },
           { "name": "Lagos State University", "short": "LASU", "state": "Lagos", "type": "state" },
           { "name": "Yaba College of Technology", "short": "YABATECH", "state": "Lagos", "type": "federal" },
           { "name": "Covenant University", "short": "Covenant University", "state": "Ogun", "type": "private" },
@@ -80,8 +80,8 @@
       "ibadan": {
         "label": "Oyo & Osun",
         "schools": [
-          { "name": "University of Ibadan", "short": "UI Ibadan", "state": "Oyo", "type": "federal" },
-          { "name": "Obafemi Awolowo University", "short": "OAU Ile-Ife", "state": "Osun", "type": "federal" },
+          { "name": "University of Ibadan", "short": "UI Ibadan", "state": "Oyo", "type": "federal", "url": "https://ui.edu.ng" },
+          { "name": "Obafemi Awolowo University", "short": "OAU Ile-Ife", "state": "Osun", "type": "federal", "url": "https://oauife.edu.ng" },
           { "name": "Ladoke Akintola University", "short": "LAUTECH", "state": "Oyo", "type": "state" },
           { "name": "Osun State University", "short": "UNIOSUN", "state": "Osun", "type": "state" },
           { "name": "Lead City University", "short": "Lead City", "state": "Oyo", "type": "private" },
@@ -109,7 +109,7 @@
       "enugu_anambra": {
         "label": "Enugu & Anambra",
         "schools": [
-          { "name": "University of Nigeria Nsukka", "short": "UNN Nsukka", "state": "Enugu", "type": "federal" },
+          { "name": "University of Nigeria Nsukka", "short": "UNN Nsukka", "state": "Enugu", "type": "federal", "url": "https://unn.edu.ng" },
           { "name": "Enugu State University of Science and Technology", "short": "ESUT Enugu", "state": "Enugu", "type": "state" },
           { "name": "Nnamdi Azikiwe University", "short": "UNIZIK Awka", "state": "Anambra", "type": "federal" },
           { "name": "Chukwuemeka Odumegwu Ojukwu University", "short": "COOU", "state": "Anambra", "type": "state" },
@@ -145,7 +145,7 @@
       "rivers_bayelsa": {
         "label": "Rivers & Bayelsa",
         "schools": [
-          { "name": "University of Port Harcourt", "short": "UNIPORT", "state": "Rivers", "type": "federal" },
+          { "name": "University of Port Harcourt", "short": "UNIPORT", "state": "Rivers", "type": "federal", "url": "https://uniport.edu.ng" },
           { "name": "Rivers State University", "short": "RSU", "state": "Rivers", "type": "state" },
           { "name": "Niger Delta University", "short": "NDU", "state": "Bayelsa", "type": "state" },
           { "name": "Federal University Otuoke", "short": "FUO Otuoke", "state": "Bayelsa", "type": "federal" },
@@ -181,17 +181,17 @@
   "any": {
     "label": "Open to any region",
     "featured": [
-      { "name": "Ahmadu Bello University", "short": "ABU Zaria", "state": "Kaduna", "type": "federal" },
-      { "name": "University of Lagos", "short": "UNILAG", "state": "Lagos", "type": "federal" },
-      { "name": "University of Ibadan", "short": "UI Ibadan", "state": "Oyo", "type": "federal" },
-      { "name": "Obafemi Awolowo University", "short": "OAU Ile-Ife", "state": "Osun", "type": "federal" },
-      { "name": "University of Nigeria Nsukka", "short": "UNN Nsukka", "state": "Enugu", "type": "federal" },
-      { "name": "University of Port Harcourt", "short": "UNIPORT", "state": "Rivers", "type": "federal" },
+      { "name": "Ahmadu Bello University", "short": "ABU Zaria", "state": "Kaduna", "type": "federal", "url": "https://abu.edu.ng" },
+      { "name": "University of Lagos", "short": "UNILAG", "state": "Lagos", "type": "federal", "url": "https://unilag.edu.ng" },
+      { "name": "University of Ibadan", "short": "UI Ibadan", "state": "Oyo", "type": "federal", "url": "https://ui.edu.ng" },
+      { "name": "Obafemi Awolowo University", "short": "OAU Ile-Ife", "state": "Osun", "type": "federal", "url": "https://oauife.edu.ng" },
+      { "name": "University of Nigeria Nsukka", "short": "UNN Nsukka", "state": "Enugu", "type": "federal", "url": "https://unn.edu.ng" },
+      { "name": "University of Port Harcourt", "short": "UNIPORT", "state": "Rivers", "type": "federal", "url": "https://uniport.edu.ng" },
       { "name": "University of Benin", "short": "UNIBEN", "state": "Edo", "type": "federal" },
       { "name": "University of Ilorin", "short": "UNILORIN", "state": "Kwara", "type": "federal" },
-      { "name": "Bayero University Kano", "short": "BUK Kano", "state": "Kano", "type": "federal" },
-      { "name": "Abubakar Tafawa Balewa University", "short": "ATBU Bauchi", "state": "Bauchi", "type": "federal" },
-      { "name": "Federal University of Technology Minna", "short": "FUT Minna", "state": "Niger", "type": "federal" },
+      { "name": "Bayero University Kano", "short": "BUK Kano", "state": "Kano", "type": "federal", "url": "https://buk.edu.ng" },
+      { "name": "Abubakar Tafawa Balewa University", "short": "ATBU Bauchi", "state": "Bauchi", "type": "federal", "url": "https://atbu.edu.ng" },
+      { "name": "Federal University of Technology Minna", "short": "FUT Minna", "state": "Niger", "type": "federal", "url": "https://futminna.edu.ng" },
       { "name": "Federal University of Technology Akure", "short": "FUTA Akure", "state": "Ondo", "type": "federal" },
       { "name": "Federal University of Technology Owerri", "short": "FUTO Owerri", "state": "Imo", "type": "federal" },
       { "name": "Covenant University", "short": "Covenant", "state": "Ogun", "type": "private" },
