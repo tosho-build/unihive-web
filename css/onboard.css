@@ -366,8 +366,8 @@ body {
   gap: 8px;
   width: 100%;
   padding: 14px 24px;
-  background: var(--green);
-  color: var(--white);
+  background: var(--amber);
+  color: var(--green);
   border: none;
   border-radius: 10px;
   font-size: 16px;
@@ -525,8 +525,8 @@ body {
   align-items: center;
   gap: 8px;
   padding: 12px 28px;
-  background: var(--green);
-  color: var(--white);
+  background: var(--amber);
+  color: var(--green);
   border-radius: 10px;
   text-decoration: none;
   font-size: 15px;

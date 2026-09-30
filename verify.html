@@ -38,8 +38,8 @@
       align-items: center;
       justify-content: center;
       padding: 14px 28px;
-      background: #1B4332;
-      color: #fff;
+      background: #F59E0B;
+      color: #1B4332;
       border-radius: 10px;
       text-decoration: none;
       font-size: 15px;
@@ -47,7 +47,6 @@
       transition: opacity 0.2s;
     }
     .btn:hover { opacity: 0.9; }
-    .btn-amber { background: #F59E0B; color: #1B4332; }
     .logo {
       display: flex;
       align-items: center;
@@ -80,20 +79,20 @@
   <!-- Loading -->
   <div class="card" id="loading">
     <div class="icon">⏳</div>
-    <h1>Verifying your email...</h1>
+    <h1>Verifying your email</h1>
     <p>Please wait a moment.</p>
   </div>
 
   <!-- Success -->
   <div class="card" id="success" style="display:none;">
     <div class="icon">🎉</div>
-    <h1>Email verified!</h1>
+    <h1>Email verified</h1>
     <p>
-      Welcome to UniHive, <strong id="userName"></strong>!
+      Welcome to UniHive, <strong id="userName"></strong>.
       Your admission monitoring is now active.
       We'll alert you the moment something relevant to your profile opens up.
     </p>
-    <a href="index.html" class="btn btn-amber">Back to UniHive →</a>
+    <a href="index.html" class="btn">Back to UniHive →</a>
   </div>
 
   <!-- Already Verified -->
@@ -108,7 +107,7 @@
   <div class="card" id="error" style="display:none;">
     <div class="icon">❌</div>
     <h1>Link expired or invalid</h1>
-    <p>This verification link has expired or is invalid. Please sign up again to get a new link.</p>
+    <p>This verification link has expired or is invalid. Sign up again to get a new one.</p>
     <a href="onboard.html" class="btn">Sign up again →</a>
   </div>
 
