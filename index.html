@@ -12,7 +12,7 @@
     <meta name="theme-color" content="#0F2B1F" />
     <meta
       name="description"
-      content="Nigeria's admission tracker. UniHive watches university portals daily and sends you a personalized alert the moment something opens — for UTME, Direct Entry, Postgraduate and Professional programmes."
+      content="Nigeria's admission tracker. UniHive watches university portals daily and sends personalized alerts for UTME, Direct Entry, Postgraduate and Professional applicants the moment something opens."
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -22,27 +22,26 @@
     />
     <link rel="stylesheet" href="css/styles.css" />
     <style>
-      /* ── Option B additions: dynamic Programmes + Universities blocks ── */
       .prog-visual { min-height: 220px; }
       .prog-update-card {
-        background: rgba(255,255,255,0.06);
-        border: 1px solid rgba(255,255,255,0.12);
+        background: #F9FAFB;
+        border: 1px solid #E5E7EB;
         border-radius: 10px;
         padding: 14px 16px;
         margin-bottom: 10px;
       }
-      .prog-update-card .school-name { font-weight: 600; color: #fff; font-size: 14px; margin-bottom: 4px; }
-      .prog-update-card .school-detail { color: rgba(255,255,255,0.65); font-size: 13px; line-height: 1.5; margin-bottom: 8px; }
+      .prog-update-card .school-name { font-weight: 600; color: #111827; font-size: 14px; margin-bottom: 4px; }
+      .prog-update-card .school-detail { color: #6B7280; font-size: 13px; line-height: 1.5; margin-bottom: 8px; }
       .prog-update-card a.school-link {
-        color: #F59E0B; font-size: 13px; font-weight: 600; text-decoration: none;
+        color: #1B4332; font-size: 13px; font-weight: 600; text-decoration: none;
       }
       .prog-update-card a.school-link:hover { text-decoration: underline; }
       .prog-empty, .prog-loading {
-        color: rgba(255,255,255,0.55);
+        color: #6B7280;
         font-size: 13px;
         padding: 20px 16px;
         text-align: center;
-        border: 1px dashed rgba(255,255,255,0.15);
+        border: 1px dashed #E5E7EB;
         border-radius: 10px;
       }
       .badge-checked {
@@ -108,38 +107,45 @@
 
     <!-- ── HERO ── -->
     <section class="hero" id="signup">
-      <div class="hero-badge">
-        <span></span> 2026/2027 admission season is active now
-      </div>
-      <h1>Your admission window won't wait.<br />Neither should you find out late.</h1>
-      <p>
-        Tell UniHive your schools and course. We watch admission portals
-        every day and send you a personalized alert the moment something
-        opens — for UTME, Direct Entry, Postgraduate and Professional
-        programmes.
-      </p>
-      <form class="hero-form" onsubmit="handleSignup(event)" novalidate>
-        <input type="email" placeholder="Enter your email address" />
-        <button type="submit" class="btn btn-amber btn-lg">
-          Join the Hive
-        </button>
-      </form>
-      <div class="hero-stats">
-        <div class="hero-stat">
-          <strong>100</strong>
-          <span>Universities tracked</span>
+      <div class="hero-inner">
+        <div class="hero-content">
+          <div class="hero-badge">
+            <span></span> <span id="heroSeasonText">Admission season is active now</span>
+          </div>
+          <h1>Know the moment your school opens admissions</h1>
+          <p>
+            UniHive monitors university portals every day and alerts you the
+            moment something changes for your profile. Built for UTME, Direct
+            Entry, Postgraduate and Professional applicants across Nigeria.
+          </p>
+          <form class="hero-form" onsubmit="handleSignup(event)" novalidate>
+            <input type="email" placeholder="Enter your email address" />
+            <button type="submit" class="btn btn-amber btn-lg">
+              Join the Hive
+            </button>
+          </form>
+          <div class="hero-stats">
+            <div class="hero-stat">
+              <strong>99</strong>
+              <span>Universities tracked</span>
+            </div>
+            <div class="hero-stat">
+              <strong>Smart</strong>
+              <span>Event driven alerts</span>
+            </div>
+            <div class="hero-stat">
+              <strong>Official</strong>
+              <span>Links only, always</span>
+            </div>
+            <div class="hero-stat">
+              <strong>4</strong>
+              <span>Programmes covered</span>
+            </div>
+          </div>
         </div>
-        <div class="hero-stat">
-          <strong>Smart</strong>
-          <span>Event-driven alerts</span>
-        </div>
-        <div class="hero-stat">
-          <strong>Official</strong>
-          <span>Links only, always</span>
-        </div>
-        <div class="hero-stat">
-          <strong>4</strong>
-          <span>Programmes covered</span>
+
+        <div class="hero-visual" id="heroCarouselWrapper">
+          <!-- Built dynamically by JS (js/main.js), desktop only -->
         </div>
       </div>
     </section>
@@ -154,7 +160,7 @@
           </h2>
           <p class="section-sub">
             No manual checking. No WhatsApp groups. No missed forms. Tell us
-            what you need — we monitor, you act.
+            what you need and we monitor, you act.
           </p>
         </div>
         <div class="steps">
@@ -162,18 +168,19 @@
             <div class="step-num">1</div>
             <h3>Tell us about yourself</h3>
             <p>
-              Answer 5 quick questions — your qualification, target programme
-              (UTME, Direct Entry, PG or Professional), preferred region, and
-              course interests. Takes under a minute.
+              Answer 5 quick questions: your qualification, target
+              programme (UTME, Direct Entry, PG or Professional),
+              preferred region, and course interests. Takes under a
+              minute.
             </p>
           </div>
           <div class="step">
             <div class="step-num">2</div>
             <h3>We check every day</h3>
             <p>
-              Our agent scans university portals and official sources every
-              morning, filtering only what matches your profile — your
-              programme, your region, your courses.
+              Our agent scans university portals and official sources
+              every morning, filtering only what matches your profile:
+              your programme, your region, your courses.
             </p>
           </div>
           <div class="step">
@@ -181,9 +188,9 @@
             <h3>You hear from us when it matters</h3>
             <p>
               The moment a portal opens or something changes for your
-              profile, you get an alert that same day. Nothing to report
-              that week? We still check in every Monday so you know we're
-              on it — no daily noise either way.
+              profile, you get an alert that same day. If there is
+              nothing to report in a given week, we still send a short
+              Monday check in, so you always know monitoring is active.
             </p>
           </div>
         </div>
@@ -207,9 +214,9 @@
             </div>
             <h3>Portal monitoring</h3>
             <p>
-              We check for Direct Entry, Post-UTME, PG and professional form
-              openings across every programme type — daily, not just when
-              you remember to look.
+              We check for Direct Entry, Post-UTME, PG and professional
+              form openings across every programme type, daily, not just
+              when you remember to look.
             </p>
           </div>
           <div class="feature-card">
@@ -223,7 +230,7 @@
             <h3>Smart alerts</h3>
             <p>
               An instant alert the day a portal opens for you. A short
-              Monday check-in if nothing's changed that week. No daily
+              Monday check in if nothing has changed that week. No daily
               spam, no dead air.
             </p>
           </div>
@@ -238,8 +245,8 @@
             </div>
             <h3>Region filtering</h3>
             <p>
-              Set your preferred region and get results focused on where you
-              want to study.
+              Set your preferred region and get results focused on where
+              you want to study.
             </p>
           </div>
           <div class="feature-card">
@@ -253,8 +260,9 @@
             </div>
             <h3>Official links only</h3>
             <p>
-              Every link in every email points straight to the university's
-              own site or JAMB — never a third-party blog or aggregator.
+              Every link in every email points straight to the
+              university's own site or JAMB, never a third party blog or
+              aggregator.
             </p>
           </div>
           <div class="feature-card">
@@ -270,7 +278,7 @@
             <p>
               UTME and Post-UTME, Direct Entry for diploma and A-level
               holders, Postgraduate (MSc, MBA, PhD), and Professional
-              certifications — all in one platform.
+              certifications, all in one platform.
             </p>
           </div>
           <div class="feature-card">
@@ -283,7 +291,7 @@
             </div>
             <h3>Written for you, not copied</h3>
             <p>
-              Every alert is generated fresh for your specific profile —
+              Every alert is generated fresh for your specific profile,
               never a generic mass email pretending to be personal.
             </p>
           </div>
@@ -297,22 +305,22 @@
         <p class="section-label">Programmes</p>
         <h2 class="section-title">Built for every type of Nigerian student</h2>
         <p class="section-sub">
-          Tell UniHive what you're pursuing and we track only what matters to
-          you. What you see below is pulled from what we actually found
-          today — not a mockup.
+          Tell UniHive what you're pursuing and we track only what
+          matters to you. The updates below are live, drawn from today's
+          monitoring run.
         </p>
 
         <div class="prog-tabs">
-          <button class="prog-tab active" onclick="switchTab('de'); loadProgrammeUpdates('de')">
+          <button class="prog-tab active" onclick="switchTab('de')">
             Direct Entry
           </button>
-          <button class="prog-tab" onclick="switchTab('utme'); loadProgrammeUpdates('utme')">
+          <button class="prog-tab" onclick="switchTab('utme')">
             UTME / Post-UTME
           </button>
-          <button class="prog-tab" onclick="switchTab('pg'); loadProgrammeUpdates('pg')">
+          <button class="prog-tab" onclick="switchTab('pg')">
             Postgraduate
           </button>
-          <button class="prog-tab" onclick="switchTab('prof'); loadProgrammeUpdates('prof')">
+          <button class="prog-tab" onclick="switchTab('prof')">
             Professional
           </button>
         </div>
@@ -322,10 +330,10 @@
           <div class="prog-info">
             <h3>Direct Entry — Diploma & A-Level to B.Sc</h3>
             <p>
-              For candidates holding a diploma or A-level qualification looking
-              to enter university at 200 level — skipping 100 level entirely.
-              UniHive monitors DE portals across federal, state and private
-              universities.
+              For candidates holding a diploma or A-level qualification
+              looking to enter university at 200 level, skipping 100
+              level entirely. UniHive monitors DE portals across federal,
+              state and private universities.
             </p>
             <div class="qual-tags">
               <span class="qual-tag">OND</span>
@@ -341,7 +349,7 @@
               <li>Grade requirements per school and qualification</li>
               <li>Cognate subject matching for your field</li>
               <li>JAMB DE registration deadlines</li>
-              <li>Direct links to official portals — never third-party</li>
+              <li>Direct links to official portals, never third party</li>
             </ul>
           </div>
           <div class="prog-visual" id="prog-visual-de">
@@ -355,9 +363,9 @@
           <div class="prog-info">
             <h3>UTME / Post-UTME</h3>
             <p>
-              For WAEC/NECO candidates who have written JAMB and are waiting
-              for Post-UTME forms, screening dates and cut-off marks across
-              their preferred universities nationwide.
+              For WAEC/NECO candidates who have written JAMB and are
+              waiting for Post-UTME forms, screening dates and cut-off
+              marks across their preferred universities nationwide.
             </p>
             <ul class="prog-list">
               <li>Post-UTME form release alerts</li>
@@ -378,8 +386,8 @@
           <div class="prog-info">
             <h3>Postgraduate Programmes</h3>
             <p>
-              For B.Sc holders looking to pursue MSc, MBA, or PhD programmes
-              across federal, state and private universities.
+              For B.Sc holders looking to pursue MSc, MBA, or PhD
+              programmes across federal, state and private universities.
             </p>
             <ul class="prog-list">
               <li>MSc / MBA / PhD form openings</li>
@@ -399,8 +407,9 @@
           <div class="prog-info">
             <h3>Professional Certificates</h3>
             <p>
-              For students and graduates pursuing professional certifications
-              and short courses alongside or instead of traditional degrees.
+              For students and graduates pursuing professional
+              certifications and short courses alongside or instead of
+              traditional degrees.
             </p>
             <ul class="prog-list">
               <li>ICAN, CIPM, NIM exam registration alerts</li>
@@ -421,11 +430,11 @@
       <div class="universities-inner">
         <p class="section-label">Coverage</p>
         <h2 class="section-title">
-          <span class="uni-count-highlight">100</span> universities across every region
+          <span class="uni-count-highlight">99</span> universities across every region
         </h2>
         <p class="section-sub">
-          Nationwide coverage — every region, every programme type, every
-          major institution.
+          Nationwide coverage across every region and every major
+          institution type.
         </p>
 
         <div class="uni-region">
@@ -499,9 +508,10 @@
           <p class="section-label">What you get</p>
           <h2 class="section-title">A real alert, written for you</h2>
           <p class="section-sub">
-            Daily monitoring. An alert the moment something opens for your
-            profile. A short Monday check-in if there's nothing new. No
-            noise, no third-party links — just what needs your attention.
+            Daily monitoring. An alert the moment something opens for
+            your profile. A short Monday check in if there is nothing
+            new. No noise and no third party links, only what needs your
+            attention.
           </p>
           <br />
           <div class="carousel-controls">
@@ -545,8 +555,8 @@
             <p class="faq-a">
               You can sign up and start receiving alerts today. If we
               introduce paid tiers with additional features in future,
-              existing users will be told clearly in advance — nothing
-              changes without notice.
+              existing users will be told clearly in advance, well before
+              anything changes.
             </p>
           </div>
 
@@ -560,10 +570,10 @@
             </button>
             <p class="faq-a">
               Direct Entry is open to candidates holding any of these
-              qualifications: OND, HND, NCE, IJMB, JUPEB, Cambridge A-Levels,
-              NABTEB (ANBC/ANTC), or a First Degree from a recognised
-              university. These routes give access to 200-level admission
-              without sitting UTME.
+              qualifications: OND, HND, NCE, IJMB, JUPEB, Cambridge
+              A-Levels, NABTEB (ANBC/ANTC), or a First Degree from a
+              recognised university. These routes give access to
+              200-level admission without sitting UTME.
             </p>
           </div>
 
@@ -576,10 +586,11 @@
               </svg>
             </button>
             <p class="faq-a">
-              We check daily. The moment something relevant to your profile
-              changes, you get an alert that same day. If nothing new comes
-              up in a given week, you'll still get a short Monday check-in —
-              so you know monitoring is still active, without extra noise.
+              We check daily. The moment something relevant to your
+              profile changes, you get an alert that same day. If
+              nothing new comes up in a given week, you'll still get a
+              short Monday check in, so you know monitoring is active
+              without extra noise.
             </p>
           </div>
 
@@ -592,11 +603,11 @@
               </svg>
             </button>
             <p class="faq-a">
-              We check admission-related sources every morning and rewrite
-              what we find in plain language for your profile. Every link we
-              send goes straight to the university's own site or JAMB — never
-              a third-party blog — so you can always confirm details
-              yourself.
+              We check admission-related sources every morning and
+              rewrite what we find in plain language for your profile.
+              Every link we send goes straight to the university's own
+              site or JAMB, never a third party blog, so you can always
+              confirm details yourself.
             </p>
           </div>
 
@@ -609,8 +620,8 @@
               </svg>
             </button>
             <p class="faq-a">
-              Yes. During onboarding you select your preferred region and we
-              prioritize results from there.
+              Yes. During onboarding you select your preferred region and
+              we prioritize results from there.
             </p>
           </div>
 
@@ -623,10 +634,10 @@
               </svg>
             </button>
             <p class="faq-a">
-              Yes. During onboarding you can select multiple programmes — for
-              example Direct Entry and Postgraduate at the same time.
-              UniHive combines alerts for all your selected routes into one
-              digest.
+              Yes. During onboarding you can select multiple programmes,
+              for example Direct Entry and Postgraduate at the same time.
+              UniHive combines alerts for all your selected routes into
+              one digest.
             </p>
           </div>
 
@@ -639,9 +650,9 @@
               </svg>
             </button>
             <p class="faq-a">
-              Every email we send has an unsubscribe link at the bottom. One
-              click and you're off our list permanently — no confirmation
-              emails, no dark patterns.
+              Every email we send has an unsubscribe link at the bottom.
+              One click and you're off our list permanently. No
+              confirmation emails, no dark patterns.
             </p>
           </div>
         </div>
@@ -681,8 +692,8 @@
             >
           </a>
           <p>
-            Nigeria's admission tracker.<br />Daily monitoring. Real alerts.
-            Official links only.
+            Nigeria's admission tracker.<br />Daily monitoring. Real
+            alerts. Official links only.
           </p>
         </div>
         <div class="footer-links">
@@ -720,60 +731,78 @@
 
     <script src="js/main.js"></script>
     <script>
-      const UNIHIVE_API = 'https://unihive-backend-production.up.railway.app';
-
-      async function loadProgrammeUpdates(programme) {
-        const containerId = `prog-visual-${programme}`;
-        const container = document.getElementById(containerId);
-        if (!container) return;
-
-        container.innerHTML = `
-          <div class="badge-checked"><span class="badge-dot"></span> Checked today</div>
-          <div class="prog-loading">Loading today's updates…</div>
-        `;
-
-        try {
-          const res = await fetch(`${UNIHIVE_API}/api/public-updates?programme=${programme}`);
-          const updates = await res.json();
-
-          if (!Array.isArray(updates) || updates.length === 0) {
-            container.innerHTML = `
-              <div class="badge-checked"><span class="badge-dot"></span> Checked today</div>
-              <div class="prog-empty">No new updates found for this programme today. We're still checking daily — sign up to get alerted the moment something changes.</div>
-            `;
-            return;
-          }
-
-          const cardsHtml = updates.slice(0, 6).map(u => `
-            <div class="prog-update-card">
-              <div class="school-name">${escapeHtml(u.school_name)}</div>
-              <div class="school-detail">${escapeHtml(u.summary)}</div>
-              ${u.official_link
-                ? `<a href="${escapeHtml(u.official_link)}" target="_blank" rel="noopener" class="school-link">Official portal →</a>`
-                : ''}
-            </div>
-          `).join('');
-
-          container.innerHTML = `
-            <div class="badge-checked"><span class="badge-dot"></span> Checked today</div>
-            ${cardsHtml}
-          `;
-        } catch (e) {
-          container.innerHTML = `
-            <div class="badge-checked"><span class="badge-dot"></span> Checked today</div>
-            <div class="prog-empty">Couldn't load today's updates right now. Try again shortly.</div>
-          `;
-        }
-      }
+      var UNIHIVE_API = 'https://unihive-backend-production.up.railway.app';
+      var PROGRAMME_LIST = ['de', 'utme', 'pg', 'prof'];
 
       function escapeHtml(str) {
-        const div = document.createElement('div');
+        var div = document.createElement('div');
         div.textContent = str || '';
         return div.innerHTML;
       }
 
-      document.addEventListener('DOMContentLoaded', () => {
-        loadProgrammeUpdates('de');
+      function renderProgrammeContainer(programme, updates) {
+        var containerId = 'prog-visual-' + programme;
+        var container = document.getElementById(containerId);
+        if (!container) return;
+
+        if (!Array.isArray(updates) || updates.length === 0) {
+          container.innerHTML =
+            '<div class="badge-checked"><span class="badge-dot"></span> Checked today</div>' +
+            '<div class="prog-empty">No new updates found for this programme today. Sign up to get alerted the moment something changes.</div>';
+          return;
+        }
+
+        var cardsHtml = updates.slice(0, 6).map(function (u) {
+          var linkHtml = u.official_link
+            ? '<a href="' + escapeHtml(u.official_link) + '" target="_blank" rel="noopener" class="school-link">Official portal &rarr;</a>'
+            : '';
+          return (
+            '<div class="prog-update-card">' +
+              '<div class="school-name">' + escapeHtml(u.school_name) + '</div>' +
+              '<div class="school-detail">' + escapeHtml(u.summary) + '</div>' +
+              linkHtml +
+            '</div>'
+          );
+        }).join('');
+
+        container.innerHTML =
+          '<div class="badge-checked"><span class="badge-dot"></span> Checked today</div>' +
+          cardsHtml;
+      }
+
+      function loadAllProgrammeUpdates() {
+        PROGRAMME_LIST.forEach(function (programme) {
+          fetch(UNIHIVE_API + '/api/public-updates?programme=' + programme)
+            .then(function (res) { return res.json(); })
+            .then(function (updates) {
+              renderProgrammeContainer(programme, updates);
+            })
+            .catch(function (err) {
+              var container = document.getElementById('prog-visual-' + programme);
+              if (container) {
+                container.innerHTML =
+                  '<div class="badge-checked"><span class="badge-dot"></span> Checked today</div>' +
+                  '<div class="prog-empty">Could not load today updates right now. Try again shortly.</div>';
+              }
+              console.error('loadProgrammeUpdates error for ' + programme + ':', err);
+            });
+        });
+      }
+
+      function setAdmissionSeasonText() {
+        var el = document.getElementById('heroSeasonText');
+        if (!el) return;
+        var now = new Date();
+        var year = now.getFullYear();
+        var month = now.getMonth();
+        var startYear = month >= 8 ? year : year - 1;
+        var endYear = startYear + 1;
+        el.textContent = startYear + '/' + endYear + ' admission season is active now';
+      }
+
+      document.addEventListener('DOMContentLoaded', function () {
+        setAdmissionSeasonText();
+        loadAllProgrammeUpdates();
       });
     </script>
   </body>

@@ -88,7 +88,7 @@ nav {
 }
 
 .nav-links a.btn-primary {
-  color: #1B4332 !important;
+  color: #1b4332 !important;
   font-weight: 700;
 }
 
@@ -160,10 +160,13 @@ nav {
 /* ── HERO ── */
 .hero {
   background: var(--green);
-  padding: 100px 5% 80px;
-  text-align: center;
+  padding: 56px 5% 48px;
   position: relative;
   overflow: hidden;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .hero::before {
@@ -183,6 +186,25 @@ nav {
     );
 }
 
+.hero-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero-visual {
+  display: none;
+}
+
 .hero-badge {
   display: inline-flex;
   align-items: center;
@@ -197,7 +219,7 @@ nav {
   margin-bottom: 28px;
 }
 
-.hero-badge span {
+.hero-badge span:first-child {
   width: 6px;
   height: 6px;
   border-radius: 50%;
@@ -217,12 +239,12 @@ nav {
 }
 
 .hero h1 {
-  font-size: clamp(36px, 6vw, 64px);
+  font-size: clamp(30px, 5vw, 48px);
   font-weight: 700;
   color: var(--white);
   line-height: 1.15;
-  max-width: 800px;
-  margin: 0 auto 20px;
+  max-width: 620px;
+  margin: 0 0 16px;
   letter-spacing: -0.5px;
 }
 
@@ -232,10 +254,10 @@ nav {
 }
 
 .hero p {
-  font-size: clamp(16px, 2vw, 20px);
+  font-size: clamp(16px, 2vw, 18px);
   color: rgba(255, 255, 255, 0.7);
-  max-width: 560px;
-  margin: 0 auto 40px;
+  max-width: 520px;
+  margin: 0 0 28px;
   line-height: 1.6;
 }
 
@@ -243,9 +265,8 @@ nav {
   display: flex;
   gap: 12px;
   max-width: 480px;
-  margin: 0 auto 48px;
-  position: relative;
-  z-index: 1;
+  width: 100%;
+  margin: 0 0 28px;
 }
 
 .hero-form input {
@@ -273,8 +294,6 @@ nav {
   justify-content: center;
   gap: 40px;
   flex-wrap: wrap;
-  position: relative;
-  z-index: 1;
 }
 
 .hero-stat {
@@ -294,6 +313,28 @@ nav {
   color: rgba(255, 255, 255, 0.55);
   margin-top: 4px;
   display: block;
+}
+
+@media (min-width: 769px) {
+  .hero-inner {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 48px;
+    align-items: center;
+    text-align: left;
+  }
+  .hero-content {
+    align-items: flex-start;
+  }
+  .hero-form {
+    margin-left: 0;
+  }
+  .hero-stats {
+    justify-content: flex-start;
+  }
+  .hero-visual {
+    display: block;
+  }
 }
 
 /* ── SECTIONS ── */
@@ -338,8 +379,8 @@ section {
 .qual-tag {
   padding: 4px 12px;
   border-radius: 100px;
-  background: rgba(27,67,50,0.08);
-  border: 1px solid rgba(27,67,50,0.2);
+  background: rgba(27, 67, 50, 0.08);
+  border: 1px solid rgba(27, 67, 50, 0.2);
   font-size: 12px;
   font-weight: 700;
   color: var(--green);
@@ -359,6 +400,49 @@ section {
 .school-link:hover {
   color: var(--green);
   text-decoration: underline;
+}
+
+/* ── HERO EMAIL PREVIEW (desktop only, decorative) ── */
+.hero-email-card {
+  background: var(--white);
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
+}
+.hero-email-header {
+  background: #143c2a;
+  padding: 14px 18px;
+}
+.hero-email-header .brand {
+  color: var(--white);
+  font-weight: 700;
+  font-size: 13px;
+}
+.hero-email-header .sub {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 10px;
+  margin-top: 2px;
+}
+.hero-email-body {
+  padding: 16px 18px;
+  font-size: 12px;
+  color: var(--text);
+  line-height: 1.6;
+}
+.hero-email-body .greet {
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.hero-email-body .label {
+  font-weight: 600;
+  color: var(--green);
+  font-size: 11px;
+  margin-bottom: 3px;
+}
+.hero-email-body .val {
+  color: #555;
+  margin-bottom: 10px;
 }
 
 /* ── HOW IT WORKS ── */
@@ -919,7 +1003,7 @@ footer {
 
 .footer-brand p {
   font-size: 13px;
-  color: rgba(255,255,255,0.4);
+  color: rgba(255, 255, 255, 0.4);
   margin-top: 10px;
   max-width: 420px;
   line-height: 1.6;
@@ -1037,6 +1121,10 @@ footer {
   }
   .hamburger {
     display: flex;
+  }
+  .hero {
+    min-height: auto;
+    padding: 100px 5% 60px;
   }
   .hero-form {
     flex-direction: column;
