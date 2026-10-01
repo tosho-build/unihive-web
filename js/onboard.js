@@ -3,6 +3,7 @@ const state = {
   currentStep: 1,
   firstName: '',
   email: '',
+  password: '',
   programmes: [],
   qualification: '',
   region: '',
@@ -221,8 +222,10 @@ function validate(step) {
   if (step === 1) {
     const name = document.getElementById('firstName').value.trim();
     const email = document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value;
     if (!name) { showError('firstNameError', 'Please enter your first name'); valid = false; }
     if (!email || !isValidEmail(email)) { showError('emailError', 'Please enter a valid email address'); valid = false; }
+    if (!password || password.length < 6) { showError('passwordError', 'Password must be at least 6 characters'); valid = false; }
   }
   if (step === 2) {
     if (state.programmes.length === 0) { showError('programmeError', 'Please select at least one programme'); valid = false; }
@@ -257,6 +260,7 @@ function collectData(step) {
   if (step === 1) {
     state.firstName = document.getElementById('firstName').value.trim();
     state.email = document.getElementById('email').value.trim();
+    state.password = document.getElementById('password').value;
   }
 }
 
@@ -289,6 +293,7 @@ async function registerUser() {
       body: JSON.stringify({
         name: state.firstName,
         email: state.email.replace(/\.+$/, '').trim(),
+        password: state.password,
         programmes: state.programmes,
         qualification: state.qualification,
         region: state.region,
@@ -301,7 +306,6 @@ async function registerUser() {
 
     if (res.ok) {
       console.log('✅ User registered:', data.message);
-      // Update confirmation to show email was sent
       const emailBox = document.querySelector('.confirm-email-box p');
       if (emailBox) {
         emailBox.innerHTML = `We've sent a confirmation link to <span style="font-weight:700;color:#111827">${state.email}</span>. Click it to activate your alerts.`;
@@ -344,7 +348,6 @@ function showConfirmation() {
   const qual = qualLabels[state.qualification] || state.qualification;
   const region = regionLabels[state.region] || state.region;
 
-  // ✅ Read directly from state — not from DOM
   const coursesText = state.courses.join(', ');
 
   document.getElementById('confirmSummary').innerHTML = `
@@ -381,20 +384,18 @@ function showConfirmation() {
   document.getElementById('stepConfirm').classList.add('active');
   window.scrollTo({ top: 0, behavior: 'smooth' });
 
-// Save to localStorage as backup
-localStorage.setItem('unihive_user', JSON.stringify({
-  name: state.firstName,
-  email: state.email,
-  programmes: state.programmes,
-  qualification: state.qualification,
-  region: state.region,
-  schools: state.schools,
-  courses: state.courses,
-  signedUp: new Date().toISOString(),
-}));
+  localStorage.setItem('unihive_user', JSON.stringify({
+    name: state.firstName,
+    email: state.email,
+    programmes: state.programmes,
+    qualification: state.qualification,
+    region: state.region,
+    schools: state.schools,
+    courses: state.courses,
+    signedUp: new Date().toISOString(),
+  }));
 
-// Send to backend
-registerUser();
+  registerUser();
 }
 
 // ── INIT ──

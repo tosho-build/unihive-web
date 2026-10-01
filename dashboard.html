@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard — UniHive</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <meta name="theme-color" content="#1B4332">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #F9FAFB;
+      min-height: 100vh;
+    }
+    nav {
+      background: #fff;
+      border-bottom: 1px solid #E5E7EB;
+      padding: 0 5%;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 8px; text-decoration: none; }
+    .nav-logo svg { width: 32px; height: 32px; }
+    .logo-text { font-size: 18px; font-weight: 700; }
+    .logo-text span:first-child { color: #1B4332; }
+    .logo-text span:last-child { color: #F59E0B; }
+    .nav-right { display: flex; align-items: center; gap: 16px; }
+    .avatar {
+      width: 32px; height: 32px; border-radius: 50%;
+      background: #FAC775; color: #412402;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; font-weight: 700;
+    }
+    .logout-btn {
+      font-size: 13px; color: #6B7280; background: none; border: none;
+      cursor: pointer; font-family: 'Inter', sans-serif;
+    }
+    .logout-btn:hover { color: #1B4332; }
+
+    main { max-width: 720px; margin: 0 auto; padding: 32px 5% 60px; }
+    .welcome { font-size: 22px; font-weight: 700; color: #111827; margin-bottom: 4px; }
+    .welcome-sub { font-size: 14px; color: #6B7280; margin-bottom: 24px; }
+
+    .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 24px; }
+    .stat-card { background: #fff; border: 1px solid #E5E7EB; border-radius: 10px; padding: 14px; }
+    .stat-label { font-size: 12px; color: #6B7280; }
+    .stat-value { font-size: 20px; font-weight: 700; color: #111827; margin-top: 4px; }
+    .stat-value.active { color: #16A34A; font-size: 15px; margin-top: 7px; }
+
+    .card { background: #fff; border: 1px solid #E5E7EB; border-radius: 12px; padding: 20px; margin-bottom: 16px; }
+    .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+    .card-title { font-size: 15px; font-weight: 700; color: #111827; }
+    .edit-link { font-size: 13px; color: #1B4332; font-weight: 700; cursor: pointer; background: none; border: none; font-family: 'Inter', sans-serif; }
+
+    .profile-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; font-size: 13px; }
+    .profile-field-label { color: #6B7280; margin-bottom: 2px; }
+    .profile-field-value { color: #111827; font-weight: 500; }
+
+    .alert-row { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #F3F4F6; font-size: 13px; }
+    .alert-row:last-child { border-bottom: none; }
+    .alert-subject { color: #111827; }
+    .alert-date { color: #9CA3AF; }
+    .empty-state { font-size: 13px; color: #9CA3AF; text-align: center; padding: 20px 0; }
+
+    .loading { text-align: center; padding: 60px 0; color: #6B7280; font-size: 14px; }
+
+    /* Edit form (hidden by default) */
+    .edit-form { display: none; }
+    .edit-form.active { display: block; }
+    .form-group { margin-bottom: 14px; }
+    .form-group label { display: block; font-size: 13px; font-weight: 500; color: #111827; margin-bottom: 6px; }
+    .course-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; }
+    .course-tag {
+      padding: 6px 14px; border-radius: 100px; border: 1.5px solid #E5E7EB;
+      background: #fff; font-size: 12px; font-weight: 500; color: #111827;
+      cursor: pointer; transition: all 0.2s;
+    }
+    .course-tag.selected { background: #1B4332; border-color: #1B4332; color: #fff; }
+    .save-btn {
+      background: #F59E0B; color: #1B4332; border: none; border-radius: 8px;
+      padding: 10px 20px; font-size: 13px; font-weight: 700; cursor: pointer;
+      font-family: 'Inter', sans-serif; margin-top: 6px;
+    }
+    .save-status { font-size: 12px; margin-top: 8px; display: none; }
+    .save-status.success { color: #16A34A; display: block; }
+    .save-status.error { color: #DC2626; display: block; }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-logo">
+      <svg viewBox="0 0 38 38" fill="none">
+        <rect width="38" height="38" rx="9" fill="#1B4332"/>
+        <polygon points="19,8 27,12.5 27,21.5 19,26 11,21.5 11,12.5" fill="#F59E0B"/>
+        <rect x="10" y="5" width="18" height="4" rx="1.5" fill="white"/>
+        <rect x="15" y="2" width="8" height="5" rx="1.5" fill="#F59E0B"/>
+        <circle cx="19" cy="17" r="3" fill="#1B4332"/>
+      </svg>
+      <span class="logo-text"><span>Uni</span><span>Hive</span></span>
+    </a>
+    <div class="nav-right">
+      <div class="avatar" id="avatarInitials">—</div>
+      <button class="logout-btn" onclick="logout()">Log out</button>
+    </div>
+  </nav>
+
+  <main>
+    <div id="loadingState" class="loading">Loading your dashboard...</div>
+
+    <div id="dashboardContent" style="display:none">
+      <div class="welcome" id="welcomeText">Welcome back</div>
+      <div class="welcome-sub" id="welcomeSub"></div>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-label">Schools tracked</div>
+          <div class="stat-value" id="statSchools">0</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Alerts received</div>
+          <div class="stat-value" id="statAlerts">0</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Status</div>
+          <div class="stat-value active" id="statStatus">Active</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Your profile</span>
+          <button class="edit-link" onclick="toggleEdit()" id="editToggleBtn">Edit</button>
+        </div>
+
+        <div id="profileView" class="profile-grid">
+          <div><div class="profile-field-label">Programme</div><div class="profile-field-value" id="pProgramme">—</div></div>
+          <div><div class="profile-field-label">Qualification</div><div class="profile-field-value" id="pQual">—</div></div>
+          <div><div class="profile-field-label">Region</div><div class="profile-field-value" id="pRegion">—</div></div>
+          <div><div class="profile-field-label">Courses</div><div class="profile-field-value" id="pCourses">—</div></div>
+        </div>
+
+        <div id="editForm" class="edit-form">
+          <div class="form-group">
+            <label>Courses (click to toggle)</label>
+            <div class="course-tags" id="editCourseTags"></div>
+          </div>
+          <button class="save-btn" onclick="saveProfile()">Save changes</button>
+          <div class="save-status" id="saveStatus"></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Recent alerts</span>
+        </div>
+        <div id="alertsList"></div>
+      </div>
+    </div>
+  </main>
+
+<script>
+  const API = 'https://unihive-backend-production.up.railway.app';
+  let currentProfile = null;
+
+  function getToken() {
+    return localStorage.getItem('unihive_token');
+  }
+
+  function logout() {
+    localStorage.removeItem('unihive_token');
+    localStorage.removeItem('unihive_user');
+    window.location.href = 'login.html';
+  }
+
+  function initials(name) {
+    return (name || '?').trim().slice(0, 2).toUpperCase();
+  }
+
+  const programmeLabels = {
+    utme: 'UTME / Post-UTME', de: 'Direct Entry',
+    pg: 'Postgraduate', prof: 'Professional Certificate',
+  };
+  const qualLabels = {
+    waec: 'WAEC / NECO / NABTEB', ond: 'OND', hnd: 'HND', nce: 'NCE',
+    ijmb: 'IJMB / JUPEB', alevel: 'Cambridge A-Levels / IB',
+    degree: 'First Degree', other: 'Other',
+  };
+  const regionLabels = {
+    north: 'Northern Nigeria', southwest: 'South-West',
+    southeast: 'South-East', southsouth: 'South-South', any: 'Any region',
+  };
+
+  async function loadDashboard() {
+    const token = getToken();
+    if (!token) {
+      window.location.href = 'login.html';
+      return;
+    }
+
+    try {
+      const [profileRes, alertsRes] = await Promise.all([
+        fetch(`${API}/api/profile`, { headers: { Authorization: `Bearer ${token}` } }),
+        fetch(`${API}/api/alerts`, { headers: { Authorization: `Bearer ${token}` } }),
+      ]);
+
+      if (profileRes.status === 401) {
+        logout();
+        return;
+      }
+
+      const profile = await profileRes.json();
+      const alerts = await alertsRes.json();
+      currentProfile = profile;
+
+      renderDashboard(profile, alerts);
+    } catch (err) {
+      document.getElementById('loadingState').textContent = 'Could not load your dashboard. Please try refreshing.';
+    }
+  }
+
+  function renderDashboard(profile, alerts) {
+    document.getElementById('avatarInitials').textContent = initials(profile.name);
+    document.getElementById('welcomeText').textContent = `Welcome back, ${profile.name}`;
+    document.getElementById('welcomeSub').textContent =
+      `We are watching ${profile.schools.length || 'all'} ${profile.schools.length === 1 ? 'school' : 'schools'} across your ${(profile.programmes || []).map(p => programmeLabels[p] || p).join(', ').toLowerCase()} profile`;
+
+    document.getElementById('statSchools').textContent = profile.schools.length > 0 ? profile.schools.length : 'All';
+    document.getElementById('statAlerts').textContent = alerts.length;
+    document.getElementById('statStatus').textContent = profile.active ? 'Active' : 'Paused';
+
+    document.getElementById('pProgramme').textContent = (profile.programmes || []).map(p => programmeLabels[p] || p).join(', ') || '—';
+    document.getElementById('pQual').textContent = qualLabels[profile.qualification] || profile.qualification || '—';
+    document.getElementById('pRegion').textContent = regionLabels[profile.region] || profile.region || '—';
+    document.getElementById('pCourses').textContent = (profile.courses || []).join(', ') || '—';
+
+    renderEditCourseTags(profile.courses || []);
+
+    const alertsList = document.getElementById('alertsList');
+    if (alerts.length === 0) {
+      alertsList.innerHTML = '<div class="empty-state">No alerts yet. We will email you the moment something relevant comes up.</div>';
+    } else {
+      alertsList.innerHTML = alerts.map(a => {
+        const date = new Date(a.sent_at).toLocaleDateString('en-NG', { month: 'short', day: 'numeric' });
+        return `<div class="alert-row"><span class="alert-subject">${escapeHtml(a.subject)}</span><span class="alert-date">${date}</span></div>`;
+      }).join('');
+    }
+
+    document.getElementById('loadingState').style.display = 'none';
+    document.getElementById('dashboardContent').style.display = 'block';
+  }
+
+  function escapeHtml(str) {
+    const div = document.createElement('div');
+    div.textContent = str || '';
+    return div.innerHTML;
+  }
+
+  function toggleEdit() {
+    const form = document.getElementById('editForm');
+    const view = document.getElementById('profileView');
+    const btn = document.getElementById('editToggleBtn');
+    const isOpen = form.classList.contains('active');
+    form.classList.toggle('active', !isOpen);
+    view.style.display = isOpen ? 'grid' : 'none';
+    btn.textContent = isOpen ? 'Edit' : 'Cancel';
+  }
+
+  function renderEditCourseTags(selectedCourses) {
+    const container = document.getElementById('editCourseTags');
+    const allKnownCourses = [...new Set([...selectedCourses])];
+    container.innerHTML = allKnownCourses.map(c => `
+      <span class="course-tag selected" data-course="${escapeHtml(c)}" onclick="this.classList.toggle('selected')">${escapeHtml(c)}</span>
+    `).join('');
+  }
+
+  async function saveProfile() {
+    const token = getToken();
+    const statusEl = document.getElementById('saveStatus');
+    const selectedTags = document.querySelectorAll('#editCourseTags .course-tag.selected');
+    const courses = Array.from(selectedTags).map(t => t.dataset.course);
+
+    if (courses.length === 0) {
+      statusEl.textContent = 'Select at least one course';
+      statusEl.className = 'save-status error';
+      return;
+    }
+
+    try {
+      const res = await fetch(`${API}/api/profile`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          programmes: currentProfile.programmes,
+          qualification: currentProfile.qualification,
+          region: currentProfile.region,
+          schools: currentProfile.schools,
+          courses,
+        }),
+      });
+
+      if (res.ok) {
+        statusEl.textContent = 'Saved successfully';
+        statusEl.className = 'save-status success';
+        document.getElementById('pCourses').textContent = courses.join(', ');
+        setTimeout(() => toggleEdit(), 1200);
+      } else {
+        statusEl.textContent = 'Could not save changes';
+        statusEl.className = 'save-status error';
+      }
+    } catch (err) {
+      statusEl.textContent = 'Could not reach the server';
+      statusEl.className = 'save-status error';
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', loadDashboard);
+</script>
+</body>
+</html>
