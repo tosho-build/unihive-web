@@ -87,7 +87,7 @@
     <p>Please wait a moment.</p>
   </div>
 
-  <!-- Success -->
+  <!-- Success (first time) -->
   <div class="card" id="success" style="display:none;">
     <div class="icon">👋</div>
     <h1>You've been unsubscribed</h1>
@@ -100,15 +100,29 @@
     <a href="index.html" class="btn">Back to UniHive</a>
   </div>
 
+  <!-- Already Unsubscribed -->
+  <div class="card" id="already" style="display:none;">
+    <div class="icon">✅</div>
+    <h1>Already unsubscribed</h1>
+    <p>
+      Hi <strong id="alreadyName"></strong>, you're already off our alert list.
+      No further action needed.
+    </p>
+    <a href="onboard.html" class="btn btn-outline">Sign up again</a>
+    <a href="index.html" class="btn">Back to UniHive</a>
+  </div>
+
   <!-- Error -->
   <div class="card" id="error" style="display:none;">
     <div class="icon">❌</div>
     <h1>Invalid link</h1>
-    <p>This unsubscribe link is invalid or has already been used.</p>
+    <p>This unsubscribe link is invalid.</p>
     <a href="index.html" class="btn">Back to UniHive →</a>
   </div>
 
 <script>
+  const API = 'https://unihive-backend-production.up.railway.app';
+
   async function unsubscribe() {
     const params = new URLSearchParams(window.location.search);
     const token = params.get('token');
@@ -119,12 +133,17 @@
     }
 
     try {
-      const res = await fetch(`https://unihive-backend-production.up.railway.app/api/unsubscribe?token=${token}`);
+      const res = await fetch(`${API}/api/unsubscribe?token=${token}`);
       const data = await res.json();
 
       if (res.ok) {
-        document.getElementById('userName').textContent = data.name;
-        show('success');
+        if (data.alreadyUnsubscribed) {
+          document.getElementById('alreadyName').textContent = data.name;
+          show('already');
+        } else {
+          document.getElementById('userName').textContent = data.name;
+          show('success');
+        }
       } else {
         show('error');
       }

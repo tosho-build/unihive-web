@@ -40,13 +40,17 @@
       padding: 14px 28px;
       background: #F59E0B;
       color: #1B4332;
+      border: none;
       border-radius: 10px;
       text-decoration: none;
       font-size: 15px;
       font-weight: 700;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
       transition: opacity 0.2s;
     }
     .btn:hover { opacity: 0.9; }
+    .btn:disabled { opacity: 0.6; cursor: not-allowed; }
     .logo {
       display: flex;
       align-items: center;
@@ -60,7 +64,10 @@
     .logo-text span:first-child { color: #1B4332; }
     .logo-text span:last-child { color: #F59E0B; }
     #loading p { color: #6B7280; }
-    #error h1 { color: #DC2626; }
+    #error h1, #expired h1 { color: #DC2626; }
+    .resend-status { font-size: 13px; margin-top: 14px; display: none; }
+    .resend-status.success { color: #16A34A; display: block; }
+    .resend-status.error { color: #DC2626; display: block; }
   </style>
 </head>
 <body>
@@ -83,7 +90,7 @@
     <p>Please wait a moment.</p>
   </div>
 
-  <!-- Success -->
+  <!-- Success (first time) -->
   <div class="card" id="success" style="display:none;">
     <div class="icon">🎉</div>
     <h1>Email verified</h1>
@@ -92,26 +99,38 @@
       Your admission monitoring is now active.
       We'll alert you the moment something relevant to your profile opens up.
     </p>
-    <a href="index.html" class="btn">Back to UniHive →</a>
+    <a href="login.html" class="btn">Log in to your dashboard →</a>
   </div>
 
   <!-- Already Verified -->
   <div class="card" id="already" style="display:none;">
     <div class="icon">✅</div>
     <h1>Already verified</h1>
-    <p>Your email is already verified and your alerts are active.</p>
-    <a href="index.html" class="btn">Back to UniHive →</a>
+    <p>Hi <strong id="alreadyName"></strong>, your email is already verified and your alerts are active.</p>
+    <a href="login.html" class="btn">Log in to your dashboard →</a>
+  </div>
+
+  <!-- Expired -->
+  <div class="card" id="expired" style="display:none;">
+    <div class="icon">⏰</div>
+    <h1>Link expired</h1>
+    <p>This verification link has expired. Request a new one below and it will be sent to your email.</p>
+    <button class="btn" id="resendBtn" onclick="resendVerification()">Send a new link</button>
+    <div class="resend-status" id="resendStatus"></div>
   </div>
 
   <!-- Error -->
   <div class="card" id="error" style="display:none;">
     <div class="icon">❌</div>
-    <h1>Link expired or invalid</h1>
-    <p>This verification link has expired or is invalid. Sign up again to get a new one.</p>
-    <a href="onboard.html" class="btn">Sign up again →</a>
+    <h1>Invalid link</h1>
+    <p>This verification link is invalid. If you already verified your email, you can log in instead.</p>
+    <a href="login.html" class="btn">Log in →</a>
   </div>
 
 <script>
+  const API = 'https://unihive-backend-production.up.railway.app';
+  let expiredEmail = null;
+
   async function verify() {
     const params = new URLSearchParams(window.location.search);
     const token = params.get('token');
@@ -122,21 +141,59 @@
     }
 
     try {
-      const res = await fetch(`https://unihive-backend-production.up.railway.app/api/verify?token=${token}`);
+      const res = await fetch(`${API}/api/verify?token=${token}`);
       const data = await res.json();
 
       if (res.ok) {
         if (data.alreadyVerified) {
+          document.getElementById('alreadyName').textContent = data.name;
           show('already');
         } else {
           document.getElementById('userName').textContent = data.name;
           show('success');
         }
+      } else if (data.expired) {
+        expiredEmail = data.email;
+        show('expired');
       } else {
         show('error');
       }
     } catch (err) {
       show('error');
+    }
+  }
+
+  async function resendVerification() {
+    const btn = document.getElementById('resendBtn');
+    const statusEl = document.getElementById('resendStatus');
+    if (!expiredEmail) return;
+
+    btn.disabled = true;
+    btn.textContent = 'Sending...';
+
+    try {
+      const res = await fetch(`${API}/api/resend-verification`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: expiredEmail }),
+      });
+      const data = await res.json();
+
+      if (res.ok) {
+        statusEl.textContent = 'A new link has been sent to your email.';
+        statusEl.className = 'resend-status success';
+        btn.textContent = 'Link sent';
+      } else {
+        statusEl.textContent = data.error || 'Could not send a new link.';
+        statusEl.className = 'resend-status error';
+        btn.disabled = false;
+        btn.textContent = 'Send a new link';
+      }
+    } catch (err) {
+      statusEl.textContent = 'Could not reach the server.';
+      statusEl.className = 'resend-status error';
+      btn.disabled = false;
+      btn.textContent = 'Send a new link';
     }
   }
 
