@@ -75,7 +75,12 @@
     .edit-form.active { display: block; }
     .form-group { margin-bottom: 14px; }
     .form-group label { display: block; font-size: 13px; font-weight: 500; color: #111827; margin-bottom: 6px; }
-    .course-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; }
+    .course-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; max-height: 220px; overflow-y: auto; padding: 4px 0; }
+    .course-search-input {
+      width: 100%; padding: 10px 14px; border-radius: 8px; border: 1.5px solid #E5E7EB;
+      font-size: 13px; font-family: 'Inter', sans-serif; outline: none; margin-bottom: 10px;
+    }
+    .course-search-input:focus { border-color: #1B4332; }
     .course-tag {
       padding: 6px 14px; border-radius: 100px; border: 1.5px solid #E5E7EB;
       background: #fff; font-size: 12px; font-weight: 500; color: #111827;
@@ -148,7 +153,8 @@
 
         <div id="editForm" class="edit-form">
           <div class="form-group">
-            <label>Courses (click to toggle)</label>
+            <label>Courses</label>
+            <input type="text" class="course-search-input" id="courseSearchInput" placeholder="Search to add a course..." oninput="filterDashboardCourses(this.value)" />
             <div class="course-tags" id="editCourseTags"></div>
           </div>
           <button class="save-btn" onclick="saveProfile()">Save changes</button>
@@ -168,6 +174,20 @@
 <script>
   const API = 'https://unihive-backend-production.up.railway.app';
   let currentProfile = null;
+  let selectedCourses = [];
+  let allCourses = [];
+  let featuredCourses = [];
+
+  async function loadCourseList() {
+    try {
+      const res = await fetch('data/courses.json');
+      const data = await res.json();
+      allCourses = data.all;
+      featuredCourses = data.featured;
+    } catch (e) {
+      console.error('Could not load course list:', e);
+    }
+  }
 
   function getToken() {
     return localStorage.getItem('unihive_token');
@@ -272,19 +292,44 @@
     btn.textContent = isOpen ? 'Edit' : 'Cancel';
   }
 
-  function renderEditCourseTags(selectedCourses) {
+  function renderEditCourseTags(initialCourses) {
+    selectedCourses = [...initialCourses];
+    renderCourseTagList(featuredCourses);
+  }
+
+  function renderCourseTagList(poolToShow) {
     const container = document.getElementById('editCourseTags');
-    const allKnownCourses = [...new Set([...selectedCourses])];
-    container.innerHTML = allKnownCourses.map(c => `
-      <span class="course-tag selected" data-course="${escapeHtml(c)}" onclick="this.classList.toggle('selected')">${escapeHtml(c)}</span>
-    `).join('');
+    const combined = [...new Set([...selectedCourses, ...poolToShow])];
+    container.innerHTML = combined.map(c => {
+      const isSelected = selectedCourses.includes(c);
+      return `<span class="course-tag ${isSelected ? 'selected' : ''}" data-course="${escapeHtml(c)}" onclick="toggleDashboardCourse(this)">${escapeHtml(c)}</span>`;
+    }).join('');
+  }
+
+  function toggleDashboardCourse(tag) {
+    const course = tag.dataset.course;
+    tag.classList.toggle('selected');
+    if (tag.classList.contains('selected')) {
+      if (!selectedCourses.includes(course)) selectedCourses.push(course);
+    } else {
+      selectedCourses = selectedCourses.filter(c => c !== course);
+    }
+  }
+
+  function filterDashboardCourses(query) {
+    const q = query.toLowerCase().trim();
+    if (!q) {
+      renderCourseTagList(featuredCourses);
+      return;
+    }
+    const matches = allCourses.filter(c => c.toLowerCase().includes(q)).slice(0, 20);
+    renderCourseTagList(matches);
   }
 
   async function saveProfile() {
     const token = getToken();
     const statusEl = document.getElementById('saveStatus');
-    const selectedTags = document.querySelectorAll('#editCourseTags .course-tag.selected');
-    const courses = Array.from(selectedTags).map(t => t.dataset.course);
+    const courses = selectedCourses;
 
     if (courses.length === 0) {
       statusEl.textContent = 'Select at least one course';
@@ -323,7 +368,10 @@
     }
   }
 
-  document.addEventListener('DOMContentLoaded', loadDashboard);
+  document.addEventListener('DOMContentLoaded', () => {
+    loadCourseList();
+    loadDashboard();
+  });
 </script>
 </body>
 </html>
