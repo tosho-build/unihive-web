@@ -15,9 +15,9 @@
           { "name": "Kano State University of Science and Technology", "short": "KUST Wudil", "state": "Kano", "type": "state", "url": "https://kust.edu.ng" },
           { "name": "Sokoto State University", "short": "SSU Sokoto", "state": "Sokoto", "type": "state", "url": "https://ssu.edu.ng" },
           { "name": "Kebbi State University", "short": "KSUSTA", "state": "Kebbi", "type": "state", "url": "https://ksusta.edu.ng" },
-          { "name": "Zamfara State University", "short": "ZSU", "state": "Zamfara", "type": "state" },
-          { "name": "Al-Qalam University Katsina", "short": "AUK", "state": "Katsina", "type": "private" },
-          { "name": "Katsina State University", "short": "KSU Katsina", "state": "Katsina", "type": "state" },
+          { "name": "Zamfara State University", "short": "ZSU", "state": "Zamfara", "type": "state", "url": "https://zamsut.edu.ng" },
+          { "name": "Al-Qalam University Katsina", "short": "AUK", "state": "Katsina", "type": "private", "url": "https://auk.edu.ng" },
+          { "name": "Katsina State University", "short": "KSU Katsina", "state": "Katsina", "type": "state", "url": "https://umyu.edu.ng" },
           { "name": "Northwest University Kano", "short": "NWU Kano", "state": "Kano", "type": "private", "url": "https://nwu.edu.ng" }
         ]
       },
@@ -53,9 +53,9 @@
           { "name": "Niger State University", "short": "NSU Lafia", "state": "Niger", "type": "state" },
           { "name": "University of Jos", "short": "UNIJOS", "state": "Plateau", "type": "federal", "url": "https://unijos.edu.ng" },
           { "name": "Nigerian Defence Academy", "short": "NDA Kaduna", "state": "Kaduna", "type": "federal", "url": "https://nda.edu.ng" },
-          { "name": "Nile University of Nigeria", "short": "Nile University", "state": "FCT", "type": "private" },
+          { "name": "Nile University of Nigeria", "short": "Nile University", "state": "FCT", "type": "private", "url": "https://nileuniversity.edu.ng" },
           { "name": "Veritas University", "short": "Veritas", "state": "FCT", "type": "private", "url": "https://veritas.edu.ng" },
-          { "name": "Bingham University", "short": "Bingham", "state": "Nasarawa", "type": "private" },
+          { "name": "Bingham University", "short": "Bingham", "state": "Nasarawa", "type": "private", "url": "https://binghamuni.edu.ng" },
           { "name": "Kwararafa University", "short": "Kwararafa", "state": "Taraba", "type": "private" }
         ]
       }
@@ -114,8 +114,8 @@
           { "name": "Nnamdi Azikiwe University", "short": "UNIZIK Awka", "state": "Anambra", "type": "federal", "url": "https://unizik.edu.ng" },
           { "name": "Chukwuemeka Odumegwu Ojukwu University", "short": "COOU", "state": "Anambra", "type": "state", "url": "https://coou.edu.ng" },
           { "name": "Caritas University", "short": "Caritas", "state": "Enugu", "type": "private", "url": "https://caritasuni.edu.ng" },
-          { "name": "Renaissance University", "short": "Renaissance", "state": "Enugu", "type": "private" },
-          { "name": "Paul University", "short": "Paul University", "state": "Anambra", "type": "private" }
+          { "name": "Renaissance University", "short": "Renaissance", "state": "Enugu", "type": "private", "url": "https://rnu.edu.ng" },
+          { "name": "Paul University", "short": "Paul University", "state": "Anambra", "type": "private", "url": "https://pauluniversity.edu.ng" }
         ]
       },
       "imo_abia": {
@@ -126,7 +126,7 @@
           { "name": "Abia State University", "short": "ABSU Uturu", "state": "Abia", "type": "state", "url": "https://absu.edu.ng" },
           { "name": "Michael Okpara University of Agriculture", "short": "MOUAU", "state": "Abia", "type": "federal", "url": "https://mouau.edu.ng" },
           { "name": "Gregory University", "short": "Gregory", "state": "Abia", "type": "private" },
-          { "name": "Rhema University", "short": "Rhema", "state": "Abia", "type": "private" }
+          { "name": "Rhema University", "short": "Rhema", "state": "Abia", "type": "private", "url": "https://rhemauniversity.edu.ng" }
         ]
       },
       "ebonyi": {
@@ -197,7 +197,7 @@
       { "name": "Covenant University", "short": "Covenant", "state": "Ogun", "type": "private", "url": "https://covenantuniversity.edu.ng" },
       { "name": "Babcock University", "short": "Babcock", "state": "Ogun", "type": "private", "url": "https://babcock.edu.ng" },
       { "name": "National Open University of Nigeria", "short": "NOUN", "state": "Nationwide", "type": "federal", "url": "https://nou.edu.ng" },
-      { "name": "Nile University of Nigeria", "short": "Nile University", "state": "FCT", "type": "private" },
+      { "name": "Nile University of Nigeria", "short": "Nile University", "state": "FCT", "type": "private", "url": "https://nileuniversity.edu.ng" },
       { "name": "American University of Nigeria", "short": "AUN Yola", "state": "Adamawa", "type": "private", "url": "https://aun.edu.ng" }
     ]
   }
